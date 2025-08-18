@@ -1,0 +1,24 @@
+{
+    "attributes": {
+        "ATK": 4.0,
+        "DEF": 2.0,
+        "EXP": 0.0,
+        "HP": 100.0,
+        "HPMAX": 100.0,
+        "LV": 1.0,
+        "LVMAX": 10.0,
+        "MANA": 0.0,
+        "MANAMAX": 0.0,
+        "MATK": 0.0,
+        "MDEF": 0.0,
+        "MONEY": 100.0,
+        "NEXTEXP": 10.0
+    },
+    "playerImgPath": "",
+    "playerName": "Mango",
+    "position": {
+        "x": 400.0,
+        "y": 300.0
+    },
+    "timestamp": "2025-06-08 14:46:03"
+}

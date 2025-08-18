@@ -1,0 +1,15 @@
+[
+    {
+        "name": "测试消耗品",
+        "type": "consumable",
+        "c_type": "heal",
+        "desc": "暂无介绍",
+        "image": "",
+        "attributes": {
+            "LV": 1,
+            "HP": 0,
+            "MP": 0
+        },
+        "price": [ 0, 0 ]
+    }
+]

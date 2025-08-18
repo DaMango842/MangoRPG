@@ -1,0 +1,19 @@
+[
+    {
+        "Name": "Test Enemy",
+        "Texture": "Assets/Textures/enemy/static_enemy.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 100,
+            "HPMAX": 100,
+            "MANA": 100,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 0,
+            "EXP": 0
+        },
+        "isBossEnemy": true
+    }
+]

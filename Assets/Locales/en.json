@@ -1,0 +1,65 @@
+{
+    "WINDOW_TITLE": "Mango RPG Demo",
+    "GAME_TITLE": "Mango RPG",
+    "STATUS": {
+        "LV": "Lvl",
+        "HP": "HP",
+        "MP": "MP",
+        "ATK": "Atk",
+        "DEF": "Def",
+        "MATK": "M.Atk",
+        "MDEF": "M.Def",
+        "MONEY": "Gold",
+        "EXP": "EXP",
+        "NEXTEXP": "Next EXP"
+    },
+    "MAIN_MENU": {
+        "NEW_GAME": "New Game",
+        "LOAD": "Load Game",
+        "SETTINGS": "Settings",
+        "EXIT_GAME": "Exit Game"
+    },
+    "LOAD_MENU": {
+        "SAVE_TITLE": "Save",
+        "LOAD_TITLE": "Load",
+        "SLOT": {
+            "SLOT_TITLE": "SLOT ",
+            "SLOT_EMPTY": "EMPTY"
+        }
+    },
+    "GAME_MENU": {
+        "CONTINUE": "Continue",
+        "ITEMS": "Inventory",
+        "EQUIP": "Equip",
+        "STATUS": "Status",
+        "SAVE": "Save",
+        "SETTINGS": "Settings",
+        "EXIT_TO_MAIN_MENU": "Main Menu"
+    },
+    "INVENTORY_MENU": {
+        "TITLE": "Inventory",
+        "TITLE_ALT": "Backpack"
+    },
+    "EQUIPMENT_MENU": {
+        "TITLE": "Equipment"
+    },
+    "STATUS_MENU": {
+        "TITLE": "Status"
+    },
+    "SETTINGS": {
+        "TITLE": "Settings",
+        "WINDOW": {
+            "LABEL": "Window Settings",
+            "VALUE": [ "Windowed", "Fullscreen" ]
+        },
+        "LANGUAGE": {
+            "LABEL": "Language",
+            "VALUE": [ "Simplified Chinese", "English" ]
+        },
+        "VOLUME": {
+            "LABEL": "Volume",
+            "VALUE": [ "Master", "Music", "SFX" ]
+        }
+    },
+    "BACKBTN": "Back"
+}

@@ -1,0 +1,19 @@
+[
+    {
+        "name": "测试武器",
+        "type": "weapon",
+        "w_type": "sword",
+        "desc": "暂无介绍",
+        "image": "",
+        "attributes": {
+            "LV": 1,
+            "HP": 0,
+            "MP": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0
+        },
+        "price": [ 0, 0 ]
+    }
+]

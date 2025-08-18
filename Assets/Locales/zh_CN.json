@@ -1,0 +1,70 @@
+{
+    "WINDOW_TITLE": "Mango RPG 开发测试版",
+    "GAME_TITLE": "Mango RPG",
+    "STATUS": {
+        "LV": "等级",
+        "HP": "血量",
+        "MP": "法力",
+        "ATK": "攻击",
+        "DEF": "防御",
+        "MATK": "魔攻",
+        "MDEF": "魔防",
+        "MONEY": "金钱",
+        "EXP": "经验值",
+        "NEXTEXP": "升级所需经验"
+    },
+    "MAIN_MENU": {
+        "NEW_GAME": "新游戏",
+        "LOAD": "读档",
+        "SETTINGS": "设置",
+        "EXIT_GAME": "退出游戏"
+    },
+    "SAVE_LOAD_MENU": {
+        "SAVE_TITLE": "存档",
+        "LOAD_TITLE": "读档",
+        "SLOT": {
+            "SLOT_TITLE": "槽位 ",
+            "SLOT_EMPTY": "空"
+        }
+    },
+    "GAME_MENU": {
+        "CONTINUE": "返回游戏",
+        "ITEMS": "背包",
+        "EQUIP": "装备",
+        "STATUS": "状态",
+        "SAVE": "存档",
+        "SETTINGS": "设置",
+        "EXIT_TO_MAIN_MENU": "返回主菜单"
+    },
+    "INVENTORY_MENU": {
+        "TITLE": "背包"
+    },
+    "EQUIPMENT_MENU": {
+        "TITLE": "装备"
+    },
+    "STATUS_MENU": {
+        "TITLE": "状态"
+    },
+    "SETTINGS": {
+        "TITLE": "设置",
+        "WINDOW": {
+            "LABEL": "窗口设置",
+            "VALUE": [ "窗口", "全屏" ]
+        },
+        "LANGUAGE": {
+            "LABEL": "语言",
+            "VALUE": [ "简体中文", "英文" ]
+        },
+        "VOLUME": {
+            "LABEL": "音量",
+            "VALUE": [ "主音量", "音乐音量", "音效音量" ]
+        }
+    },
+    "BATTLE": {
+        "ATTACK": "攻击",
+        "SKILL": "技能",
+        "ITEMS": "道具",
+        "FLEE": "逃跑"
+    },
+    "BACKBTN": "返回"
+}

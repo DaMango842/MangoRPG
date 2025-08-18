@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{f64f4961-9636-40b0-b7c3-2eb25ee66327}</ProjectGuid>
+    <RootNamespace>MangoRPG</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>true</EnableASAN>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)External\include;$(SolutionDir)External\sfml\include;$(SolutionDir)MangoAPI\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)External\sfml\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)External\include;$(SolutionDir)External\sfml\include;$(SolutionDir)MangoAPI\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)External\sfml\lib;$(IncludePath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <UseDynamicDebugging>
+      </UseDynamicDebugging>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <UseDynamicDebugging>
+      </UseDynamicDebugging>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MangoAPI\src\ButtonGroup.cpp" />
+    <ClCompile Include="MangoAPI\src\Armor.cpp" />
+    <ClCompile Include="MangoAPI\src\BattleState.cpp" />
+    <ClCompile Include="MangoAPI\src\BattleSystem.cpp" />
+    <ClCompile Include="MangoAPI\src\Consumable.cpp" />
+    <ClCompile Include="MangoAPI\src\DropDown.cpp" />
+    <ClCompile Include="MangoAPI\src\Enemy.cpp" />
+    <ClCompile Include="MangoAPI\src\Factory.cpp" />
+    <ClCompile Include="MangoAPI\src\Item.cpp" />
+    <ClCompile Include="MangoAPI\include\Utils.h" />
+    <ClCompile Include="MangoAPI\src\KeyItem.cpp" />
+    <ClCompile Include="MangoAPI\src\Material.cpp" />
+    <ClCompile Include="MangoAPI\src\ProgressBar.cpp" />
+    <ClCompile Include="MangoAPI\src\SaveSlot.cpp" />
+    <ClCompile Include="MangoAPI\src\Container.cpp" />
+    <ClCompile Include="MangoAPI\src\PlayerInfoState.cpp" />
+    <ClCompile Include="MangoAPI\src\CheckBox.cpp" />
+    <ClCompile Include="MangoAPI\src\InputBox.cpp" />
+    <ClCompile Include="MangoAPI\src\RadioBox.cpp" />
+    <ClCompile Include="MangoAPI\src\RadioButton.cpp" />
+    <ClCompile Include="MangoAPI\src\SaveManager.cpp" />
+    <ClCompile Include="MangoAPI\src\SaveMenuState.cpp" />
+    <ClCompile Include="MangoAPI\src\ScrollBar.cpp" />
+    <ClCompile Include="MangoAPI\src\SettingsMenuState.cpp" />
+    <ClCompile Include="MangoAPI\src\Slider.cpp" />
+    <ClCompile Include="MangoAPI\src\StatusMenuState.cpp" />
+    <ClCompile Include="MangoAPI\src\EquipMenuState.cpp" />
+    <ClCompile Include="MangoAPI\src\ItemMenuState.cpp" />
+    <ClCompile Include="MangoAPI\include\ItemMenuState.h" />
+    <ClCompile Include="MangoAPI\src\GameMenuState.cpp" />
+    <ClCompile Include="MangoAPI\src\GameState.cpp" />
+    <ClCompile Include="MangoAPI\include\GameState.h" />
+    <ClCompile Include="MangoAPI\src\MainMenuState.cpp" />
+    <ClCompile Include="MangoAPI\src\Button.cpp" />
+    <ClCompile Include="MangoAPI\src\Camera.cpp" />
+    <ClCompile Include="MangoAPI\src\Label.cpp" />
+    <ClCompile Include="MangoAPI\src\StateManager.cpp" />
+    <ClCompile Include="MangoAPI\src\TestState.cpp" />
+    <ClCompile Include="MangoAPI\src\TextButton.cpp" />
+    <ClCompile Include="MangoAPI\src\TileMap.cpp" />
+    <ClCompile Include="MangoAPI\src\FPS.cpp" />
+    <ClCompile Include="MangoAPI\src\Game.cpp" />
+    <ClCompile Include="MangoAPI\src\ResourceLoader.cpp" />
+    <ClCompile Include="MangoAPI\src\SpriteAnimation.cpp" />
+    <ClCompile Include="MangoAPI\src\Player.cpp" />
+    <ClCompile Include="MangoAPI\src\Translator.cpp" />
+    <ClCompile Include="MangoAPI\src\Utils.cpp" />
+    <ClCompile Include="MangoAPI\src\Weapon.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MangoAPI\include\Animation.h" />
+    <ClInclude Include="MangoAPI\include\Armor.h" />
+    <ClInclude Include="MangoAPI\include\Attribute.h" />
+    <ClInclude Include="MangoAPI\include\BaseComponent.h" />
+    <ClInclude Include="MangoAPI\include\BaseObject.h" />
+    <ClInclude Include="MangoAPI\include\BaseState.h" />
+    <ClInclude Include="MangoAPI\include\BattleState.h" />
+    <ClInclude Include="MangoAPI\include\BattleSystem.h" />
+    <ClInclude Include="MangoAPI\include\Button.h" />
+    <ClInclude Include="MangoAPI\include\ButtonGroup.h" />
+    <ClInclude Include="MangoAPI\include\Camera.h" />
+    <ClInclude Include="MangoAPI\include\CheckBox.h" />
+    <ClInclude Include="MangoAPI\include\Constant.hpp" />
+    <ClInclude Include="MangoAPI\include\Consumable.h" />
+    <ClInclude Include="MangoAPI\include\Container.h" />
+    <ClInclude Include="MangoAPI\include\DropDown.h" />
+    <ClInclude Include="MangoAPI\include\Encounter.h" />
+    <ClInclude Include="MangoAPI\include\Enemy.h" />
+    <ClInclude Include="MangoAPI\include\EquipMenuState.h" />
+    <ClInclude Include="MangoAPI\include\EquipSlot.h" />
+    <ClInclude Include="MangoAPI\include\EventManager.h" />
+    <ClInclude Include="MangoAPI\include\ExceptionMonitor.h" />
+    <ClInclude Include="MangoAPI\include\Factory.h" />
+    <ClInclude Include="MangoAPI\include\GameContext.h" />
+    <ClInclude Include="MangoAPI\include\Image.h" />
+    <ClInclude Include="MangoAPI\include\Item.h" />
+    <ClInclude Include="MangoAPI\include\KeyItem.h" />
+    <ClInclude Include="MangoAPI\include\LanguageObserver.hpp" />
+    <ClInclude Include="MangoAPI\include\FPS.h" />
+    <ClInclude Include="MangoAPI\include\Game.h" />
+    <ClInclude Include="MangoAPI\include\GameMenuState.h" />
+    <ClInclude Include="MangoAPI\include\InputBox.h" />
+    <ClInclude Include="MangoAPI\include\Label.h" />
+    <ClInclude Include="MangoAPI\include\Logger.h" />
+    <ClInclude Include="MangoAPI\include\MainMenuState.h" />
+    <ClInclude Include="MangoAPI\include\MangoException.h" />
+    <ClInclude Include="MangoAPI\include\MangoList.hpp" />
+    <ClInclude Include="MangoAPI\include\MangoPtr.hpp" />
+    <ClInclude Include="MangoAPI\include\MangoString.hpp" />
+    <ClInclude Include="MangoAPI\include\MangoVector.hpp" />
+    <ClInclude Include="MangoAPI\include\Material.h" />
+    <ClInclude Include="MangoAPI\include\MusicManager.h" />
+    <ClInclude Include="MangoAPI\include\Player.h" />
+    <ClInclude Include="MangoAPI\include\PlayerInfoState.h" />
+    <ClInclude Include="MangoAPI\include\ProgressBar.h" />
+    <ClInclude Include="MangoAPI\include\RadioBox.h" />
+    <ClInclude Include="MangoAPI\include\RadioButton.h" />
+    <ClInclude Include="MangoAPI\include\Random.hpp" />
+    <ClInclude Include="MangoAPI\include\ResourceLoader.h" />
+    <ClInclude Include="MangoAPI\include\SafeCallback.hpp" />
+    <ClInclude Include="MangoAPI\include\SaveManager.h" />
+    <ClInclude Include="MangoAPI\include\SaveMenuState.h" />
+    <ClInclude Include="MangoAPI\include\SaveSlot.h" />
+    <ClInclude Include="MangoAPI\include\ScrollBar.h" />
+    <ClInclude Include="MangoAPI\include\ScrollDirection.h" />
+    <ClInclude Include="MangoAPI\include\SettingsMenuState.h" />
+    <ClInclude Include="MangoAPI\include\Signal.hpp" />
+    <ClInclude Include="MangoAPI\include\Slider.h" />
+    <ClInclude Include="MangoAPI\include\SlotInfo.h" />
+    <ClInclude Include="MangoAPI\include\SpriteAnimation.h" />
+    <ClInclude Include="MangoAPI\include\StateManager.h" />
+    <ClInclude Include="MangoAPI\include\StatusMenuState.h" />
+    <ClInclude Include="MangoAPI\include\SafeTypes.hpp" />
+    <ClInclude Include="MangoAPI\include\TestState.h" />
+    <ClInclude Include="MangoAPI\include\TextButton.h" />
+    <ClInclude Include="MangoAPI\include\TileMap.h" />
+    <ClInclude Include="MangoAPI\include\Translator.h" />
+    <ClInclude Include="MangoAPI\include\Weapon.h" />
+    <ClInclude Include="MangoAPI\include\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="cpp.hint" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

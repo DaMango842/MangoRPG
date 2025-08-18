@@ -1,0 +1,172 @@
+[
+    {
+        "Name": "Test Enemy",
+        "Texture": "Assets/Image/Enemies/enemy_placeholder.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 50,
+            "HPMAX": 50,
+            "MANA": 0,
+            "MANAMAX": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 2,
+            "EXP": 1
+        }
+    },
+    {
+        "Name": "Test Enemy 2",
+        "Texture": "Assets/Image/Enemies/enemy_placeholder.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 50,
+            "HPMAX": 50,
+            "MANA": 0,
+            "MANAMAX": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 4,
+            "EXP": 2
+        }
+    },
+    {
+        "Name": "Test Enemy 3",
+        "Texture": "Assets/Image/Enemies/enemy_placeholder.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 50,
+            "HPMAX": 50,
+            "MANA": 0,
+            "MANAMAX": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 6,
+            "EXP": 3
+        }
+    },
+    {
+        "Name": "Test Enemy 4",
+        "Texture": "Assets/Image/Enemies/enemy_placeholder.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 50,
+            "HPMAX": 50,
+            "MANA": 0,
+            "MANAMAX": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 8,
+            "EXP": 4
+        }
+    },
+    {
+        "Name": "Test Enemy 5",
+        "Texture": "Assets/Image/Enemies/enemy_placeholder.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 50,
+            "HPMAX": 50,
+            "MANA": 0,
+            "MANAMAX": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 10,
+            "EXP": 5
+        }
+    },
+    {
+        "Name": "Test Enemy 6",
+        "Texture": "Assets/Image/Enemies/enemy_placeholder.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 50,
+            "HPMAX": 50,
+            "MANA": 0,
+            "MANAMAX": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 12,
+            "EXP": 6
+        }
+    },
+    {
+        "Name": "Test Enemy 7",
+        "Texture": "Assets/Image/Enemies/enemy_placeholder.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 50,
+            "HPMAX": 50,
+            "MANA": 0,
+            "MANAMAX": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 14,
+            "EXP": 7
+        }
+    },
+    {
+        "Name": "Test Enemy 8",
+        "Texture": "Assets/Image/Enemies/enemy_placeholder.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 50,
+            "HPMAX": 50,
+            "MANA": 0,
+            "MANAMAX": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 16,
+            "EXP": 8
+        }
+    },
+    {
+        "Name": "Test Enemy 9",
+        "Texture": "Assets/Image/Enemies/enemy_placeholder.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 50,
+            "HPMAX": 50,
+            "MANA": 0,
+            "MANAMAX": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 18,
+            "EXP": 9
+        }
+    },
+    {
+        "Name": "Test Enemy 10",
+        "Texture": "Assets/Image/Enemies/enemy_placeholder.png",
+        "Attributes": {
+            "LV": 1,
+            "HP": 50,
+            "HPMAX": 50,
+            "MANA": 0,
+            "MANAMAX": 0,
+            "ATK": 0,
+            "DEF": 0,
+            "MATK": 0,
+            "MDEF": 0,
+            "MONEY": 20,
+            "EXP": 10
+        }
+    }
+]
