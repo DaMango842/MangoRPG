@@ -8,7 +8,7 @@ void Container::addComponent(std::unique_ptr<BaseComponent> component) {
     m_components.push_back(MangoPtr<BaseComponent>::observe(raw));
 }
 
-void Container::addComponent(MangoPtr<BaseComponent>& observer) {
+void Container::addComponent(MangoPtr<BaseComponent> observer) {
     if (!observer) return;
     m_components.push_back(observer);
 }

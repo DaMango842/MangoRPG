@@ -15,7 +15,7 @@ public:
 
     // Component management
     void addComponent(std::unique_ptr<BaseComponent> component);
-    void addComponent(MangoPtr<BaseComponent>& observer);
+    void addComponent(MangoPtr<BaseComponent> observer);
     void removeComponent(BaseComponent* component);
     void clearComponents();
     void safeClearComponents();
