@@ -36,7 +36,8 @@ public:
 
     [[nodiscard]] size_t buttonCount() const noexcept;
     [[nodiscard]] int focusedIndex() const noexcept;
-    [[nodiscard]] Button* focusedButton() const noexcept;
+    [[nodiscard]] const Button* focusedButton() const noexcept;
+    [[nodiscard]] Button* focusedButton() noexcept;
 
 private:
     MangoVector<ButtonPtr> m_buttons;

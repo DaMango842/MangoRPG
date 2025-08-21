@@ -28,7 +28,40 @@ public:
         if constexpr (std::derived_from<T, BaseComponent>) {
             if (!component) return;
             component->setParent(this);
-            addComponent(MangoPtr<BaseComponent>::observe(component.get()));
+
+            // 直接将组件添加到观察者列表
+            m_components.push_back(component.template cast_static<BaseComponent>());
+        }
+    }
+
+    // 版本1：只绑定观察者（不获取所有权）
+    template<typename T>
+    void bindComponentObserver(MangoPtr<T>& component) {
+        static_assert(std::derived_from<T, BaseComponent>,
+            "T must be derived from BaseComponent");
+
+        if (!component) return;
+        component->setParent(this);
+        m_components.push_back(component.template cast_static<BaseComponent>());
+    }
+
+    // 版本2：绑定并获取所有权
+    template<typename T>
+    void bindComponentOwned(MangoPtr<T> component) {
+        static_assert(std::derived_from<T, BaseComponent>,
+            "T must be derived from BaseComponent");
+
+        if (!component) return;
+        component->setParent(this);
+
+        // 添加到观察者列表
+        m_components.push_back(component.template staticCast<BaseComponent>());
+
+        // 转换为 unique_ptr 并添加到拥有列表
+        // 这需要 MangoPtr 提供 release() 方法
+        if (component.unique()) {
+            T* raw = component.release();
+            m_ownedComponents.push_back(std::unique_ptr<BaseComponent>(raw));
         }
     }
 
@@ -41,7 +74,8 @@ public:
 
     // Component access
     [[nodiscard]] const std::vector<MangoPtr<BaseComponent>>& getComponents() const noexcept;
-    [[nodiscard]] BaseComponent* getComponent(std::size_t index) const noexcept;
+    [[nodiscard]] const BaseComponent* getComponent(std::size_t index) const noexcept;
+    [[nodiscard]] BaseComponent* getComponent(std::size_t index) noexcept;
 
     // Iteration support
     [[nodiscard]] auto begin() noexcept { return m_components.begin(); }

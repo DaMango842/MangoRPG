@@ -154,6 +154,7 @@
     <ClCompile Include="MangoAPI\src\BattleState.cpp" />
     <ClCompile Include="MangoAPI\src\BattleSystem.cpp" />
     <ClCompile Include="MangoAPI\src\Consumable.cpp" />
+    <ClCompile Include="MangoAPI\src\DialogueSystem.cpp" />
     <ClCompile Include="MangoAPI\src\DropDown.cpp" />
     <ClCompile Include="MangoAPI\src\Enemy.cpp" />
     <ClCompile Include="MangoAPI\src\Factory.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="MangoAPI\src\StateManager.cpp" />
     <ClCompile Include="MangoAPI\src\TestState.cpp" />
     <ClCompile Include="MangoAPI\src\TextButton.cpp" />
+    <ClCompile Include="MangoAPI\src\TextDisplay.cpp" />
     <ClCompile Include="MangoAPI\src\TileMap.cpp" />
     <ClCompile Include="MangoAPI\src\FPS.cpp" />
     <ClCompile Include="MangoAPI\src\Game.cpp" />
@@ -203,6 +205,7 @@
     <ClInclude Include="MangoAPI\include\Armor.h" />
     <ClInclude Include="MangoAPI\include\Attribute.h" />
     <ClInclude Include="MangoAPI\include\BaseComponent.h" />
+    <ClInclude Include="MangoAPI\include\BaseDialogue.h" />
     <ClInclude Include="MangoAPI\include\BaseObject.h" />
     <ClInclude Include="MangoAPI\include\BaseState.h" />
     <ClInclude Include="MangoAPI\include\BattleState.h" />
@@ -214,6 +217,7 @@
     <ClInclude Include="MangoAPI\include\Constant.hpp" />
     <ClInclude Include="MangoAPI\include\Consumable.h" />
     <ClInclude Include="MangoAPI\include\Container.h" />
+    <ClInclude Include="MangoAPI\include\DialogueSystem.h" />
     <ClInclude Include="MangoAPI\include\DropDown.h" />
     <ClInclude Include="MangoAPI\include\Encounter.h" />
     <ClInclude Include="MangoAPI\include\Enemy.h" />
@@ -264,6 +268,7 @@
     <ClInclude Include="MangoAPI\include\SafeTypes.hpp" />
     <ClInclude Include="MangoAPI\include\TestState.h" />
     <ClInclude Include="MangoAPI\include\TextButton.h" />
+    <ClInclude Include="MangoAPI\include\TextDisplay.h" />
     <ClInclude Include="MangoAPI\include\TileMap.h" />
     <ClInclude Include="MangoAPI\include\Translator.h" />
     <ClInclude Include="MangoAPI\include\Weapon.h" />

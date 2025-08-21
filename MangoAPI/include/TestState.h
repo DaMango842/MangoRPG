@@ -15,6 +15,8 @@
 
 #include "Logger.h"
 
+#include "DialogueSystem.h"
+
 #include <MangoPtr.hpp>
 
 class TestState : public BaseState
@@ -42,4 +44,6 @@ private:
     Encounter m_encounter;
 
     Container m_container;
+
+    DialogueSystem m_dialogSys;
 };

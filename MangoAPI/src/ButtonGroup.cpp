@@ -277,7 +277,16 @@ int ButtonGroup::focusedIndex() const noexcept
     return m_focusedIndex;
 }
 
-Button* ButtonGroup::focusedButton() const noexcept
+const Button* ButtonGroup::focusedButton() const noexcept
+{
+    if (m_focusedIndex >= 0 && m_focusedIndex < static_cast<int>(m_buttons.size()) &&
+        m_buttons[m_focusedIndex]) {
+        return m_buttons[m_focusedIndex].get();
+    }
+    return nullptr;
+}
+
+Button* ButtonGroup::focusedButton() noexcept
 {
     if (m_focusedIndex >= 0 && m_focusedIndex < static_cast<int>(m_buttons.size()) &&
         m_buttons[m_focusedIndex]) {

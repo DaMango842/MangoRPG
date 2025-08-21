@@ -5,6 +5,7 @@ void Container::addComponent(std::unique_ptr<BaseComponent> component) {
     BaseComponent* raw = component.get();
     component->setParent(this);
     m_ownedComponents.push_back(std::move(component));
+
     m_components.push_back(MangoPtr<BaseComponent>::observe(raw));
 }
 
@@ -71,6 +72,11 @@ const std::vector<MangoPtr<BaseComponent>>& Container::getComponents() const noe
     return m_components;
 }
 
-BaseComponent* Container::getComponent(std::size_t index) const noexcept {
+const BaseComponent* Container::getComponent(std::size_t index) const noexcept {
+    return (index < m_components.size()) ? m_components[index].get() : nullptr;
+}
+
+BaseComponent* Container::getComponent(std::size_t index) noexcept
+{
     return (index < m_components.size()) ? m_components[index].get() : nullptr;
 }

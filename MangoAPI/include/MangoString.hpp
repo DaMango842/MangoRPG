@@ -2,22 +2,20 @@
 
 #include <cstring>
 #include <stdexcept>
-#include <vector>
 #include <string>
-#include <concepts>
-#include <sstream>
-#include <memory>
 #include <string_view>
-#include <type_traits>
+#include <memory>
 #include <compare>
 #include <format>
-#include <iterator>
-#include <cuchar>
-#include <clocale>
-#include <locale>
-#include <codecvt>
-#include <cctype>
 #include <algorithm>
+#include <limits>
+#include <iostream>
+
+// 检测SFML是否可用
+#if defined(MANGO_STRING_ENABLE_SFML) || __has_include(<SFML/System/String.hpp>)
+#include <SFML/System/String.hpp>
+#define MANGO_STRING_SFML_SUPPORT 1
+#endif
 
 // 主模板声明
 template <typename CharT, typename Traits = std::char_traits<CharT>>
@@ -33,37 +31,52 @@ using U32String = MangoString<char32_t>;
 template <typename CharT, typename Traits>
 class MangoString {
 private:
-    // SSO 配置
-    static constexpr size_t SSO_CAPACITY =
-        (sizeof(void*) * 3 - 1) / sizeof(CharT);
-
-    // 存储结构
+    // 存储结构 - 使用64位容量
     struct HeapStorage {
         CharT* data;
-        size_t size;
-        size_t capacity;
+        uint64_t size;
+        uint64_t capacity;
     };
 
+    // SSO 配置 - 使用更可靠的计算方法
+    static constexpr size_t SSO_CAPACITY =
+        (sizeof(HeapStorage) - 1) / sizeof(CharT);
+
+    // 联合存储
     union {
         CharT sso[SSO_CAPACITY + 1]; // +1 for null terminator
         HeapStorage heap;
     };
 
-    bool is_sso : 1;
-    unsigned char sso_size : 7; // 7 bits for size (max 127)
+    // 使用位域标记SSO状态和大小
+    struct Control {
+        bool is_sso : 1;
+        uint8_t sso_size : 7; // 7 bits for size (max 127)
+    } control;
 
     // 辅助函数
     void destroy() noexcept {
-        if (!is_sso) {
+        if (!control.is_sso) {
             delete[] heap.data;
+            // 重置堆指针，避免悬空指针
+            heap.data = nullptr;
+            heap.size = 0;
+            heap.capacity = 0;
         }
     }
 
-    void reserve_impl(size_t new_cap) {
-        new_cap = std::max(new_cap, static_cast<size_t>(SSO_CAPACITY));
+    void reserve_impl(uint64_t new_cap) {
+        // 确保新容量至少为 SSO_CAPACITY
+        new_cap = std::max(new_cap, static_cast<uint64_t>(SSO_CAPACITY));
+
+        // 检查容量是否合理
+        if (new_cap > std::numeric_limits<uint64_t>::max() / sizeof(CharT)) {
+            throw std::length_error("MangoString reserve would exceed maximum size");
+        }
+
         CharT* new_data = new CharT[new_cap + 1];
 
-        const size_t current_size = size();
+        const uint64_t current_size = size();
         if (current_size > 0) {
             Traits::copy(new_data, data(), current_size);
         }
@@ -74,31 +87,59 @@ private:
         heap.data = new_data;
         heap.size = current_size;
         heap.capacity = new_cap;
-        is_sso = false;
+        control.is_sso = false;
     }
 
-    void set_size(size_t new_size) noexcept {
-        if (is_sso) {
-            sso_size = static_cast<unsigned char>(new_size);
+    void set_size(uint64_t new_size) noexcept {
+        if (control.is_sso) {
+            // 确保不会超过 SSO 容量
+            control.sso_size = static_cast<uint8_t>(std::min(new_size, static_cast<uint64_t>(SSO_CAPACITY)));
         }
         else {
             heap.size = new_size;
         }
     }
 
-    void set_sso_data(const CharT* str, size_t len) noexcept {
+    void set_sso_data(const CharT* str, uint64_t len) noexcept {
+        // 确保长度不超过 SSO 容量
+        len = std::min(len, static_cast<uint64_t>(SSO_CAPACITY));
         Traits::copy(sso, str, len);
         sso[len] = CharT();
-        sso_size = static_cast<unsigned char>(len);
-        is_sso = true;
+        control.sso_size = static_cast<uint8_t>(len);
+        control.is_sso = true;
+    }
+
+    // 通用分配函数
+    template <typename Func>
+    void allocate_and_set(uint64_t count, Func setter) {
+        if (count <= SSO_CAPACITY) {
+            if (!control.is_sso) {
+                destroy();
+                control.is_sso = true;
+            }
+            setter(sso, count);
+            sso[count] = CharT();
+            control.sso_size = static_cast<uint8_t>(count);
+        }
+        else {
+            if (control.is_sso || count > capacity()) {
+                destroy();
+                heap.data = new CharT[count + 1];
+                heap.capacity = count;
+                control.is_sso = false;
+            }
+            setter(heap.data, count);
+            heap.data[count] = CharT();
+            heap.size = count;
+        }
     }
 
 public:
     // 类型别名
     using value_type = CharT;
     using traits_type = Traits;
-    using size_type = size_t;
-    using difference_type = ptrdiff_t;
+    using size_type = uint64_t;
+    using difference_type = int64_t;
     using reference = CharT&;
     using const_reference = const CharT&;
     using pointer = CharT*;
@@ -112,97 +153,77 @@ public:
     static constexpr size_type npos = static_cast<size_type>(-1);
 
     // 构造函数
-    constexpr MangoString() noexcept : is_sso(true), sso_size(0) {
+    constexpr MangoString() noexcept : control{ true, 0 } {
         sso[0] = CharT();
     }
 
-    MangoString(const CharT* str) {
+    MangoString(const CharT* str) : control{ true, 0 } {
         if (!str) {
-            is_sso = true;
-            sso_size = 0;
             sso[0] = CharT();
             return;
         }
 
-        const size_t len = Traits::length(str);
-        if (len <= SSO_CAPACITY) {
-            set_sso_data(str, len);
-        }
-        else {
-            heap.data = new CharT[len + 1];
-            Traits::copy(heap.data, str, len + 1);
-            heap.size = len;
-            heap.capacity = len;
-            is_sso = false;
-        }
+        const uint64_t len = Traits::length(str);
+        allocate_and_set(len, [&](CharT* dest, uint64_t count) {
+            Traits::copy(dest, str, count);
+            });
     }
 
-    MangoString(const CharT* data, size_t count) {
+    MangoString(const CharT* data, uint64_t count) : control{ true, 0 } {
         if (count == 0) {
-            is_sso = true;
-            sso_size = 0;
             sso[0] = CharT();
             return;
         }
 
-        if (count <= SSO_CAPACITY) {
-            set_sso_data(data, count);
-        }
-        else {
-            heap.data = new CharT[count + 1];
-            Traits::copy(heap.data, data, count);
-            heap.data[count] = CharT();
-            heap.size = count;
-            heap.capacity = count;
-            is_sso = false;
-        }
+        allocate_and_set(count, [&](CharT* dest, uint64_t count) {
+            Traits::copy(dest, data, count);
+            });
     }
 
-    MangoString(size_t count, CharT ch) {
-        if (count <= SSO_CAPACITY) {
-            Traits::assign(sso, count, ch);
-            sso[count] = CharT();
-            is_sso = true;
-            sso_size = static_cast<unsigned char>(count);
+    MangoString(uint64_t count, CharT ch) : control{ true, 0 } {
+        if (count == 0) {
+            sso[0] = CharT();
+            return;
         }
-        else {
-            heap.data = new CharT[count + 1];
-            Traits::assign(heap.data, count, ch);
-            heap.data[count] = CharT();
-            heap.size = count;
-            heap.capacity = count;
-            is_sso = false;
-        }
+
+        allocate_and_set(count, [&](CharT* dest, uint64_t count) {
+            Traits::assign(dest, count, ch);
+            });
     }
 
-    MangoString(const MangoString& other) {
-        if (other.is_sso) {
-            Traits::copy(sso, other.sso, other.sso_size + 1);
-            is_sso = true;
-            sso_size = other.sso_size;
+    MangoString(const MangoString& other) : control{ true, 0 } {
+        if (other.control.is_sso) {
+            Traits::copy(sso, other.sso, other.control.sso_size + 1);
+            control.is_sso = true;
+            control.sso_size = other.control.sso_size;
         }
         else {
+            // 分配新内存，不要直接复制指针！
             heap.data = new CharT[other.heap.capacity + 1];
             Traits::copy(heap.data, other.heap.data, other.heap.size + 1);
             heap.size = other.heap.size;
             heap.capacity = other.heap.capacity;
-            is_sso = false;
+            control.is_sso = false;
         }
     }
 
-    MangoString(MangoString&& other) noexcept {
-        if (other.is_sso) {
-            Traits::copy(sso, other.sso, other.sso_size + 1);
-            is_sso = true;
-            sso_size = other.sso_size;
+    MangoString(MangoString&& other) noexcept : control{ true, 0 } {
+        if (other.control.is_sso) {
+            Traits::copy(sso, other.sso, other.control.sso_size + 1);
+            control.is_sso = true;
+            control.sso_size = other.control.sso_size;
+            // 清空源对象
+            other.control.sso_size = 0;
+            other.sso[0] = CharT();
         }
         else {
+            // 转移堆数据所有权
             heap = other.heap;
-            is_sso = false;
+            control.is_sso = false;
 
-            // 使other处于有效但空的状态
-            other.is_sso = true;
-            other.sso_size = 0;
+            // 使源对象处于有效的SSO状态
+            other.control.is_sso = true;
+            other.control.sso_size = 0;
             other.sso[0] = CharT();
         }
     }
@@ -212,17 +233,61 @@ public:
     }
 
     template <typename InputIt>
-    MangoString(InputIt first, InputIt last) {
-        is_sso = true;
-        sso_size = 0;
+    MangoString(InputIt first, InputIt last) : control{ true, 0 } {
         sso[0] = CharT();
-
         append(first, last);
     }
 
     MangoString(view_type sv)
         : MangoString(sv.data(), sv.size()) {
     }
+
+    // SFML 支持
+#ifdef MANGO_STRING_SFML_SUPPORT
+    MangoString(const sf::String& sfStr) {
+        if constexpr (std::is_same_v<CharT, char>) {
+            // UTF-32 -> UTF-8
+            std::string u8;
+            u8.reserve(sfStr.getSize() * 4);
+            sf::Utf8::fromUtf32(sfStr.begin(), sfStr.end(), std::back_inserter(u8));
+            assign(u8.c_str(), u8.size());
+        }
+        else if constexpr (std::is_same_v<CharT, char8_t>) {
+            // UTF-32 -> UTF-8(char8_t)
+            std::string u8;
+            u8.reserve(sfStr.getSize() * 4);
+            sf::Utf8::fromUtf32(sfStr.begin(), sfStr.end(), std::back_inserter(u8));
+            assign(reinterpret_cast<const char8_t*>(u8.data()), u8.size());
+        }
+        else if constexpr (std::is_same_v<CharT, wchar_t>) {
+            // 直接拿 wide（Win: UTF-16, *nix: UTF-32）——但只是“同名宽字符”，不是跨平台同码位
+            auto w = sfStr.toWideString();
+            assign(w.c_str(), w.size());
+        }
+        else if constexpr (std::is_same_v<CharT, char16_t>) {
+            // UTF-32 -> UTF-16
+            std::u16string u16;
+            u16.reserve(sfStr.getSize() * 2);
+            sf::Utf16::fromUtf32(sfStr.begin(), sfStr.end(), std::back_inserter(u16));
+            assign(u16.data(), u16.size());
+        }
+        else if constexpr (std::is_same_v<CharT, char32_t>) {
+            // 直接拷 UTF-32 码点
+            std::u32string u32;
+            u32.reserve(sfStr.getSize());
+            for (auto cp : sfStr) u32.push_back(static_cast<char32_t>(cp));
+            assign(u32.data(), u32.size());
+        }
+        else {
+            static_assert(!sizeof(CharT), "Unsupported CharT for MangoString<CharT> from sf::String");
+        }
+    }
+
+    // ---- MangoString 正确转 sf::String（给 sf::Text 用）----
+    operator sf::String() const {
+        return sf::String::fromUtf8(begin(), end());
+    }
+#endif
 
     ~MangoString() {
         destroy();
@@ -231,8 +296,27 @@ public:
     // 赋值操作符
     MangoString& operator=(const MangoString& other) {
         if (this != &other) {
-            MangoString tmp(other);
-            swap(tmp);
+            // 先销毁当前数据
+            destroy();
+
+            // 重新初始化控制块
+            control.is_sso = true;
+            control.sso_size = 0;
+            sso[0] = CharT();
+
+            // 复制数据
+            if (other.control.is_sso) {
+                Traits::copy(sso, other.sso, other.control.sso_size + 1);
+                control.is_sso = true;
+                control.sso_size = other.control.sso_size;
+            }
+            else {
+                heap.data = new CharT[other.heap.capacity + 1];
+                Traits::copy(heap.data, other.heap.data, other.heap.size + 1);
+                heap.size = other.heap.size;
+                heap.capacity = other.heap.capacity;
+                control.is_sso = false;
+            }
         }
         return *this;
     }
@@ -241,17 +325,22 @@ public:
         if (this != &other) {
             destroy();
 
-            if (other.is_sso) {
-                Traits::copy(sso, other.sso, other.sso_size + 1);
-                is_sso = true;
-                sso_size = other.sso_size;
+            if (other.control.is_sso) {
+                Traits::copy(sso, other.sso, other.control.sso_size + 1);
+                control.is_sso = true;
+                control.sso_size = other.control.sso_size;
+                // 清空源对象
+                other.control.sso_size = 0;
+                other.sso[0] = CharT();
             }
             else {
+                // 转移堆数据所有权
                 heap = other.heap;
-                is_sso = false;
+                control.is_sso = false;
 
-                other.is_sso = true;
-                other.sso_size = 0;
+                // 使源对象处于有效的SSO状态
+                other.control.is_sso = true;
+                other.control.sso_size = 0;
                 other.sso[0] = CharT();
             }
         }
@@ -277,27 +366,53 @@ public:
         return *this;
     }
 
+    // SFML 赋值支持
+#ifdef MANGO_STRING_SFML_SUPPORT
+    MangoString& operator=(const sf::String& sfStr) {
+        return *this = MangoString(sfStr);
+    }
+#endif
+
     // 容量相关
-    size_t size() const noexcept {
-        return is_sso ? sso_size : heap.size;
+    uint64_t size() const noexcept {
+        // 移除不必要的nullptr检查，this永远不会为nullptr
+        // if (this == nullptr) { return 0; } // 删除这行
+
+        if (control.is_sso) {
+            return static_cast<uint64_t>(control.sso_size);
+        }
+        else {
+            // 确保堆数据有效
+            if (heap.data == nullptr) {
+                return 0; // 如果data为nullptr，返回0
+            }
+
+            // 添加额外的边界检查
+            if (heap.size > heap.capacity) {
+                // 大小不能超过容量
+                return heap.capacity;
+            }
+
+            return heap.size;
+        }
     }
 
-    size_t length() const noexcept {
+    uint64_t length() const noexcept {
         return size();
     }
 
-    size_t capacity() const noexcept {
-        return is_sso ? SSO_CAPACITY : heap.capacity;
+    uint64_t capacity() const noexcept {
+        return control.is_sso ? SSO_CAPACITY : heap.capacity;
     }
 
     bool empty() const noexcept {
         return size() == 0;
     }
 
-    void reserve(size_t new_cap) {
+    void reserve(uint64_t new_cap) {
         if (new_cap <= capacity()) return;
 
-        if (is_sso) {
+        if (control.is_sso) {
             reserve_impl(new_cap);
         }
         else {
@@ -308,15 +423,15 @@ public:
     }
 
     void shrink_to_fit() {
-        if (is_sso || size() == heap.capacity) return;
+        if (control.is_sso || size() == heap.capacity) return;
 
         if (size() <= SSO_CAPACITY) {
             CharT temp[SSO_CAPACITY + 1];
             Traits::copy(temp, heap.data, size() + 1);
             delete[] heap.data;
             Traits::copy(sso, temp, size() + 1);
-            is_sso = true;
-            sso_size = static_cast<unsigned char>(size());
+            control.is_sso = true;
+            control.sso_size = static_cast<uint8_t>(size());
         }
         else {
             CharT* new_data = new CharT[size() + 1];
@@ -328,22 +443,22 @@ public:
     }
 
     // 元素访问
-    CharT& operator[](size_t pos) noexcept {
+    CharT& operator[](uint64_t pos) noexcept {
         return data()[pos];
     }
 
-    const CharT& operator[](size_t pos) const noexcept {
+    const CharT& operator[](uint64_t pos) const noexcept {
         return data()[pos];
     }
 
-    CharT& at(size_t pos) {
+    CharT& at(uint64_t pos) {
         if (pos >= size()) {
             throw std::out_of_range("MangoString::at");
         }
         return (*this)[pos];
     }
 
-    const CharT& at(size_t pos) const {
+    const CharT& at(uint64_t pos) const {
         if (pos >= size()) {
             throw std::out_of_range("MangoString::at");
         }
@@ -367,11 +482,11 @@ public:
     }
 
     CharT* data() noexcept {
-        return is_sso ? sso : heap.data;
+        return control.is_sso ? sso : heap.data;
     }
 
     const CharT* data() const noexcept {
-        return is_sso ? sso : heap.data;
+        return control.is_sso ? sso : heap.data;
     }
 
     const CharT* c_str() const noexcept {
@@ -401,8 +516,8 @@ public:
 
     // 修改操作
     void clear() noexcept {
-        if (is_sso) {
-            sso_size = 0;
+        if (control.is_sso) {
+            control.sso_size = 0;
             sso[0] = CharT();
         }
         else {
@@ -411,7 +526,7 @@ public:
         }
     }
 
-    MangoString& assign(const CharT* str, size_t count) {
+    MangoString& assign(const CharT* str, uint64_t count) {
         if (count == 0) {
             clear();
             return *this;
@@ -422,26 +537,9 @@ public:
             return assign(MangoString(str, count));
         }
 
-        if (count <= SSO_CAPACITY) {
-            if (!is_sso) {
-                destroy();
-                is_sso = true;
-            }
-            Traits::copy(sso, str, count);
-            sso[count] = CharT();
-            sso_size = static_cast<unsigned char>(count);
-        }
-        else {
-            if (is_sso || count > capacity()) {
-                destroy();
-                heap.data = new CharT[count + 1];
-                heap.capacity = count;
-                is_sso = false;
-            }
-            Traits::copy(heap.data, str, count);
-            heap.data[count] = CharT();
-            heap.size = count;
-        }
+        allocate_and_set(count, [&](CharT* dest, uint64_t count) {
+            Traits::copy(dest, str, count);
+            });
         return *this;
     }
 
@@ -454,32 +552,15 @@ public:
         return assign(str.data(), str.size());
     }
 
-    MangoString& assign(size_t count, CharT ch) {
+    MangoString& assign(uint64_t count, CharT ch) {
         if (count == 0) {
             clear();
             return *this;
         }
 
-        if (count <= SSO_CAPACITY) {
-            if (!is_sso) {
-                destroy();
-                is_sso = true;
-            }
-            Traits::assign(sso, count, ch);
-            sso[count] = CharT();
-            sso_size = static_cast<unsigned char>(count);
-        }
-        else {
-            if (is_sso || count > capacity()) {
-                destroy();
-                heap.data = new CharT[count + 1];
-                heap.capacity = count;
-                is_sso = false;
-            }
-            Traits::assign(heap.data, count, ch);
-            heap.data[count] = CharT();
-            heap.size = count;
-        }
+        allocate_and_set(count, [&](CharT* dest, uint64_t count) {
+            Traits::assign(dest, count, ch);
+            });
         return *this;
     }
 
@@ -505,7 +586,7 @@ public:
     }
 
     void push_back(CharT ch) {
-        const size_t current_size = size();
+        const uint64_t current_size = size();
         if (current_size == capacity()) {
             reserve(capacity() * 2);
         }
@@ -524,7 +605,7 @@ public:
         set_size(size() - 1);
     }
 
-    MangoString& append(const CharT* data, size_t count) {
+    MangoString& append(const CharT* data, uint64_t count) {
         if (count == 0) return *this;
 
         // 处理自追加
@@ -532,8 +613,13 @@ public:
             return append(MangoString(data, count));
         }
 
-        const size_t current_size = size();
-        const size_t new_size = current_size + count;
+        const uint64_t current_size = size();
+        // 添加溢出检查
+        if (count > std::numeric_limits<uint64_t>::max() - current_size) {
+            throw std::length_error("MangoString append would exceed maximum size");
+        }
+
+        const uint64_t new_size = current_size + count;
 
         if (new_size > capacity()) {
             reserve(std::max(new_size, capacity() * 2));
@@ -555,9 +641,9 @@ public:
         return append(str, Traits::length(str));
     }
 
-    MangoString& append(size_t count, CharT ch) {
-        const size_t current_size = size();
-        const size_t new_size = current_size + count;
+    MangoString& append(uint64_t count, CharT ch) {
+        const uint64_t current_size = size();
+        const uint64_t new_size = current_size + count;
 
         if (new_size > capacity()) {
             reserve(std::max(new_size, capacity() * 2));
@@ -588,18 +674,18 @@ public:
     }
 
     // 字符串操作
-    MangoString substr(size_t pos = 0, size_t count = npos) const {
-        const size_t len = size();
+    MangoString substr(uint64_t pos = 0, uint64_t count = npos) const {
+        const uint64_t len = size();
         if (pos > len) {
             throw std::out_of_range("MangoString::substr");
         }
 
-        const size_t actual_count = (count == npos) ? len - pos : std::min(count, len - pos);
+        const uint64_t actual_count = (count == npos) ? len - pos : std::min(count, len - pos);
         return MangoString(data() + pos, actual_count);
     }
 
-    size_t find(CharT ch, size_t pos = 0) const noexcept {
-        for (size_t i = pos; i < size(); ++i) {
+    uint64_t find(CharT ch, uint64_t pos = 0) const noexcept {
+        for (uint64_t i = pos; i < size(); ++i) {
             if (Traits::eq((*this)[i], ch)) {
                 return i;
             }
@@ -607,13 +693,13 @@ public:
         return npos;
     }
 
-    size_t find(const CharT* str, size_t pos, size_t count) const noexcept {
+    uint64_t find(const CharT* str, uint64_t pos, uint64_t count) const noexcept {
         if (count == 0) return pos <= size() ? pos : npos;
 
-        const size_t len = size();
+        const uint64_t len = size();
         if (pos + count > len) return npos;
 
-        for (size_t i = pos; i <= len - count; ++i) {
+        for (uint64_t i = pos; i <= len - count; ++i) {
             if (Traits::compare(data() + i, str, count) == 0) {
                 return i;
             }
@@ -621,15 +707,15 @@ public:
         return npos;
     }
 
-    size_t find(const CharT* str, size_t pos = 0) const noexcept {
+    uint64_t find(const CharT* str, uint64_t pos = 0) const noexcept {
         return find(str, pos, Traits::length(str));
     }
 
-    size_t find(const MangoString& str, size_t pos = 0) const noexcept {
+    uint64_t find(const MangoString& str, uint64_t pos = 0) const noexcept {
         return find(str.data(), pos, str.size());
     }
 
-    size_t find(view_type sv, size_t pos = 0) const noexcept {
+    uint64_t find(view_type sv, uint64_t pos = 0) const noexcept {
         return find(sv.data(), pos, sv.size());
     }
 
@@ -663,27 +749,35 @@ public:
                 return MangoString(result.c_str(), result.size());
             }
             else {
-                // 对于其他字符类型，转换为宽字符处理
-                std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> conv;
-                std::wstring wfmt = conv.from_bytes(
-                    reinterpret_cast<const char*>(fmt.data()),
-                    reinterpret_cast<const char*>(fmt.data() + fmt.size())
-                );
+                // 对于其他字符类型，使用字符串流作为备选方案
+                std::basic_ostringstream<CharT, Traits> oss;
+                oss << fmt;
 
-                std::wstring wresult = std::vformat(
-                    wfmt,
-                    std::make_wformat_args(std::forward<Args>(args)...)
-                );
+                // 使用传统方法展开参数包，避免折叠表达式
+                using expander = int[];
+                (void)expander {
+                    0, (oss << std::forward<Args>(args), 0)...
+                };
 
-                std::string u8result = conv.to_bytes(wresult);
-                return MangoString(
-                    reinterpret_cast<const CharT*>(u8result.c_str()),
-                    u8result.size() / sizeof(CharT)
-                );
+                return MangoString(oss.str().c_str(), oss.str().size());
             }
         }
-        catch (const std::format_error& e) {
-            throw std::runtime_error(std::string("Format error: ") + e.what());
+        catch (const std::exception& e) {
+            // 对于所有异常类型，返回错误信息
+            if constexpr (std::is_same_v<CharT, char>) {
+                return MangoString(std::string("Format error: ") + e.what());
+            }
+            else if constexpr (std::is_same_v<CharT, wchar_t>) {
+                // 将错误信息转换为宽字符串
+                std::wstring wmsg = L"Format error: ";
+                std::string msg = e.what();
+                wmsg += std::wstring(msg.begin(), msg.end());
+                return MangoString(wmsg.c_str(), wmsg.size());
+            }
+            else {
+                // 对于其他字符类型，返回简单的错误消息
+                return MangoString("Format error");
+            }
         }
     }
 
@@ -691,17 +785,62 @@ public:
     void swap(MangoString& other) noexcept {
         if (this == &other) return;
 
-        // 使用临时缓冲区交换
-        alignas(MangoString) char buffer[sizeof(MangoString)];
-        std::memcpy(buffer, this, sizeof(MangoString));
-        std::memcpy(this, &other, sizeof(MangoString));
-        std::memcpy(&other, buffer, sizeof(MangoString));
+        // 使用手动交换而不是memcpy
+        if (control.is_sso && other.control.is_sso) {
+            // 两个都是SSO，交换SSO数据
+            CharT temp[SSO_CAPACITY + 1]{};
+            Traits::copy(temp, sso, SSO_CAPACITY + 1);
+            Traits::copy(sso, other.sso, SSO_CAPACITY + 1);
+            Traits::copy(other.sso, temp, SSO_CAPACITY + 1);
+
+            std::swap(control, other.control);
+        }
+        else if (!control.is_sso && !other.control.is_sso) {
+            // 两个都是堆分配，交换堆数据
+            std::swap(heap, other.heap);
+            std::swap(control, other.control);
+        }
+        else {
+            // 一个SSO，一个堆分配，需要转换
+            MangoString temp(std::move(*this));
+            *this = std::move(other);
+            other = std::move(temp);
+        }
     }
 
     // 转换函数
     std::basic_string<CharT, Traits> to_std_string() const {
         return std::basic_string<CharT, Traits>(data(), size());
     }
+
+    // SFML 转换支持
+#ifdef MANGO_STRING_SFML_SUPPORT
+    sf::String to_sf_string() const { return static_cast<sf::String>(*this); }
+#endif
+
+#ifdef MANGO_STRING_DEBUG
+    void debug_info() const {
+        std::cout << "MangoString Debug Info:\n";
+        std::cout << "  is_sso: " << control.is_sso << "\n";
+        std::cout << "  size: " << size() << "\n";
+        std::cout << "  capacity: " << capacity() << "\n";
+        std::cout << "  SSO_CAPACITY: " << SSO_CAPACITY << "\n";
+        if (control.is_sso) {
+            std::cout << "  sso_size: " << static_cast<int>(control.sso_size) << "\n";
+            std::cout << "  sso data: ";
+            for (size_t i = 0; i <= SSO_CAPACITY; ++i) {
+                std::cout << static_cast<int>(sso[i]) << " ";
+            }
+            std::cout << "\n";
+        }
+        else {
+            std::cout << "  heap.data: " << static_cast<void*>(heap.data) << "\n";
+            std::cout << "  heap.size: " << heap.size << "\n";
+            std::cout << "  heap.capacity: " << heap.capacity << "\n";
+        }
+        std::cout << "  content: " << data() << "\n";
+    }
+#endif
 };
 
 // 非成员函数
@@ -722,57 +861,6 @@ std::basic_istream<CharT, Traits>& operator>>(
     is >> temp;
     str = MangoString<CharT, Traits>(temp.c_str(), temp.size());
     return is;
-}
-
-// 转换函数模板
-template <typename T>
-concept StringConvertible = requires(T a) {
-    { std::to_string(a) } -> std::convertible_to<std::string>;
-};
-
-template <typename T>
-MangoString<char> to_mango_string(T&& value) {
-    if constexpr (std::is_same_v<std::decay_t<T>, const char*> ||
-        std::is_same_v<std::decay_t<T>, char*>) {
-        return String(value);
-    }
-    else if constexpr (std::is_same_v<std::decay_t<T>, std::string>) {
-        return String(value.c_str(), value.size());
-    }
-    else if constexpr (std::is_same_v<std::decay_t<T>, String>) {
-        return value;
-    }
-    else if constexpr (StringConvertible<T>) {
-        return String(std::to_string(value).c_str());
-    }
-    else {
-        std::ostringstream oss;
-        oss << value;
-        return String(oss.str().c_str(), oss.str().size());
-    }
-}
-
-// 宽字符版本
-template <typename T>
-MangoString<wchar_t> to_wmango_string(T&& value) {
-    if constexpr (std::is_same_v<std::decay_t<T>, const wchar_t*> ||
-        std::is_same_v<std::decay_t<T>, wchar_t*>) {
-        return WString(value);
-    }
-    else if constexpr (std::is_same_v<std::decay_t<T>, std::wstring>) {
-        return WString(value.c_str(), value.size());
-    }
-    else if constexpr (std::is_same_v<std::decay_t<T>, WString>) {
-        return value;
-    }
-    else if constexpr (StringConvertible<T>) {
-        return WString(std::to_wstring(value).c_str());
-    }
-    else {
-        std::wostringstream woss;
-        woss << value;
-        return WString(woss.str().c_str(), woss.str().size());
-    }
 }
 
 // 哈希支持
