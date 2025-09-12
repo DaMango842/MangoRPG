@@ -4,64 +4,129 @@
 #include <fstream>
 #include <algorithm>
 
+#include <Window.h>
+
 DialogueSystem::DialogueSystem(const sf::Font& font, unsigned int charSize)
     : m_font(font), m_textDisplay(font, charSize) {
 
-    // 对话框设置
-    m_bg.setFillColor(sf::Color(0, 0, 0, 200));
-    m_bg.setSize({ 700.f, 150.f });
-    m_bg.setPosition(50.f, 400.f);
+    // 对话框设置 - 底部对话框风格
+    m_bg.setFillColor(sf::Color(0, 0, 0, 220));
+    m_bg.setSize({ 800.f, 200.f }); // 全宽度
+    m_bg.setPosition(0.f, 400.f);   // 底部对齐
 
-    // 角色名称框
-    m_nameBg.setFillColor(sf::Color(0, 0, 100, 200));
-    m_nameBg.setSize({ 200.f, 30.f });
-    m_nameBg.setPosition(50.f, 370.f);
+    // 角色名称框 - 角标风格
+    m_nameBg.setFillColor(sf::Color(70, 130, 180, 230)); // 钢蓝色
+    m_nameBg.setSize({ 200.f, 35.f });
+    m_nameBg.setPosition(20.f, 365.f); // 稍微重叠在对话框上
 
     m_nameText.setFont(m_font);
-    m_nameText.setCharacterSize(charSize - 2);
+    m_nameText.setCharacterSize(charSize);
     m_nameText.setFillColor(sf::Color::White);
-    m_nameText.setPosition(60.f, 375.f);
+    m_nameText.setPosition(30.f, 370.f);
+    m_nameText.setStyle(sf::Text::Bold);
 
-    // 文本显示位置
-    m_textDisplay.setPosition({ 70.f, 420.f });
+    // 文本显示位置 - 更大的边距
+    m_textDisplay.setPosition({ 40.f, 430.f });
 
-    // 选项框设置
-    m_optionsBg.setFillColor(sf::Color(0, 0, 0, 200));
-    m_optionsBg.setOutlineColor(sf::Color::White);
-    m_optionsBg.setOutlineThickness(2.f);
+    // 选项框设置 - 居中显示
+    m_optionsBg.setFillColor(sf::Color(30, 30, 40, 230));
+    m_optionsBg.setOutlineColor(sf::Color(100, 100, 140));
+    m_optionsBg.setOutlineThickness(1.5f);
 
-    // 默认选项框位置
-    m_optionsPosition = { 150.f, 250.f };
-    m_optionSpacing = 15.f;
+    m_optionsPosition = { 250.f, 220.f };
+    m_optionSpacing = 10.f;
 }
 
 DialogueSystem::~DialogueSystem() {
     // 智能指针自动管理内存，无需手动删除
 }
 
-void DialogueSystem::handleEvent(const sf::Event& event) {
-    if (getState() != State::Active) return;
+// 实现访问者接口
+void DialogueSystem::visit(TextNode& node) {
+    m_textDisplay.setText(node.text, node.displaySpeed);
+    m_textDisplay.setColor(node.textColor);
+    m_selectedChoice = -1;
+    m_currentChoices.clear();
 
+    if (node.onDisplayComplete) {
+        node.onDisplayComplete();
+    }
+}
+
+void DialogueSystem::visit(ChoiceNode& node) {
+    m_textDisplay.complete();
+    m_currentChoices = node.options;
+    m_selectedChoice = -1;
+
+    for (size_t i = 0; i < m_currentChoices.size(); ++i) {
+        if (m_currentChoices[i] && m_currentChoices[i]->enabled) {
+            m_selectedChoice = static_cast<int>(i);
+            break;
+        }
+    }
+}
+
+void DialogueSystem::visit(BranchNode& node) {
+    for (const auto& conditionPair : node.conditionNodes) {
+        if (m_currentNode->condition && m_currentNode->condition()) {
+            advanceToNode(conditionPair.second);
+            return;
+        }
+    }
+
+    if (!node.defaultNode.empty()) {
+        advanceToNode(node.defaultNode);
+    }
+    else {
+        endDialogue();
+    }
+}
+
+void DialogueSystem::visit(ActionNode& node) {
+    if (node.action) {
+        node.action();
+    }
+
+    if (!node.nextNode.empty()) {
+        advanceToNode(node.nextNode);
+    }
+    else {
+        endDialogue();
+    }
+}
+
+void DialogueSystem::executeCurrentNode() {
+    if (m_currentNode) {
+        m_currentNode->accept(*this);
+    }
+}
+
+void DialogueSystem::handleEvent(const sf::Event& event) {
+    const auto& window = Window::getInstance().getWindow();
+    handleEvent(event, window);
+}
+
+void DialogueSystem::handleEvent(const sf::Event& event, const sf::RenderTarget& target)
+{
+    if (getState() != State::Active) return;
     switch (event.type) {
     case sf::Event::KeyPressed:
         if (event.key.code == sf::Keyboard::Enter || event.key.code == sf::Keyboard::Space) {
             if (!m_textDisplay.isComplete()) {
                 m_textDisplay.complete();
             }
-            else if (m_currentNode && m_currentNode->type == DialogueNodeType::Choice) {
-                if (m_selectedChoice >= 0) executeCurrentChoice();
-            }
-            else {
-                // 推进到下一个节点
-                if (m_currentNode && m_currentNode->type == DialogueNodeType::Text) {
-                    TextNode* textNode = static_cast<TextNode*>(m_currentNode.get());
+            else if (m_currentNode) {
+                // 使用安全的类型检查
+                if (auto textNode = m_currentNode.cast_static<TextNode>()) {
                     if (!textNode->nextNode.empty()) {
                         advanceToNode(textNode->nextNode);
                     }
                     else {
-                        // 如果没有下一个节点，设置自动结束
                         m_autoEndTimer = 0.5f;
                     }
+                }
+                else if (auto choiceNode = m_currentNode.cast_static<ChoiceNode>()) {
+                    if (m_selectedChoice >= 0) executeCurrentChoice();
                 }
             }
         }
@@ -77,19 +142,17 @@ void DialogueSystem::handleEvent(const sf::Event& event) {
             if (!m_textDisplay.isComplete()) {
                 m_textDisplay.complete();
             }
-            else if (m_currentNode && m_currentNode->type == DialogueNodeType::Choice) {
-                updateSelection({ float(event.mouseButton.x), float(event.mouseButton.y) });
-                if (m_selectedChoice >= 0) executeCurrentChoice();
-            }
-            else {
-                // 推进到下一个节点
-                if (m_currentNode && m_currentNode->type == DialogueNodeType::Text) {
-                    TextNode* textNode = static_cast<TextNode*>(m_currentNode.get());
+            else if (m_currentNode) {
+                sf::Vector2f mousePos = target.mapPixelToCoords({ event.mouseButton.x, event.mouseButton.y });
+                updateSelection(mousePos);
+                if (auto choiceNode = m_currentNode.cast_static<ChoiceNode>()) {
+                    if (m_selectedChoice >= 0) executeCurrentChoice();
+                }
+                else if (auto textNode = m_currentNode.cast_static<TextNode>()) {
                     if (!textNode->nextNode.empty()) {
                         advanceToNode(textNode->nextNode);
                     }
                     else {
-                        // 如果没有下一个节点，设置自动结束
                         m_autoEndTimer = 0.5f;
                     }
                 }
@@ -97,11 +160,14 @@ void DialogueSystem::handleEvent(const sf::Event& event) {
         }
         break;
     case sf::Event::MouseMoved:
-        updateSelection({ float(event.mouseMove.x), float(event.mouseMove.y) });
+        {
+            sf::Vector2f mousePos = target.mapPixelToCoords({ event.mouseMove.x, event.mouseMove.y });
+            updateSelection(mousePos);
+        }
         break;
     default:
         break;
-    }
+	}
 }
 
 void DialogueSystem::update(float deltaTime) {
@@ -122,25 +188,20 @@ void DialogueSystem::update(float deltaTime) {
 void DialogueSystem::render(sf::RenderTarget& target) {
     if (getState() != State::Active) return;
 
-    // 先渲染选项框（如果存在）
     if (m_currentNode && m_currentNode->type == DialogueNodeType::Choice && m_textDisplay.isComplete()) {
         renderOptions(target);
     }
 
-    // 渲染对话框
     target.draw(m_bg);
 
-    // 显示角色名
-    if (m_currentNode && m_currentNode->type == DialogueNodeType::Text) {
-        TextNode* textNode = static_cast<TextNode*>(m_currentNode.get());
-        if (!textNode->characterName.empty()) {
+    if (auto textNode = m_currentNode.cast_static<TextNode>()) {
+        if (!textNode->characterName.empty() && isStringValid(textNode->characterName)) {
             target.draw(m_nameBg);
             m_nameText.setString(textNode->characterName);
             target.draw(m_nameText);
         }
     }
 
-    // 显示文本
     m_textDisplay.draw(target);
 }
 
@@ -156,11 +217,18 @@ void DialogueSystem::renderOptions(sf::RenderTarget& target) {
     tempText.setFont(m_font);
     tempText.setCharacterSize(m_textDisplay.getCharacterSize());
 
-    // 计算总高度
+    // 计算总高度 - 添加安全检查
     for (const auto& option : m_currentChoices) {
         if (!option->enabled) continue;
 
-        tempText.setString(option->text);
+        // 安全检查
+        if (!isStringValid(option->text)) {
+            tempText.setString("Invalid option text");
+        }
+        else {
+            tempText.setString(option->text);
+        }
+
         totalHeight += tempText.getLocalBounds().height + m_optionSpacing;
     }
 
@@ -175,7 +243,7 @@ void DialogueSystem::renderOptions(sf::RenderTarget& target) {
     m_optionsBg.setPosition(optionsX, optionsY);
     target.draw(m_optionsBg);
 
-    // 渲染选项
+    // 渲染选项 - 添加安全检查
     float yPos = optionsY + 10.f;
 
     for (size_t i = 0; i < m_currentChoices.size(); ++i) {
@@ -184,7 +252,14 @@ void DialogueSystem::renderOptions(sf::RenderTarget& target) {
         sf::Text optionText;
         optionText.setFont(m_font);
         optionText.setCharacterSize(m_textDisplay.getCharacterSize());
-        optionText.setString(m_currentChoices[i]->text);
+
+        // 安全检查
+        if (!isStringValid(m_currentChoices[i]->text)) {
+            optionText.setString("Invalid option");
+        }
+        else {
+            optionText.setString(m_currentChoices[i]->text);
+        }
 
         // 文本居中
         float textWidth = optionText.getLocalBounds().width;
@@ -298,87 +373,6 @@ void DialogueSystem::advanceToNode(const String& nodeId) {
     executeCurrentNode();
 }
 
-void DialogueSystem::executeCurrentNode() {
-    if (!m_currentNode) return;
-
-    switch (m_currentNode->type) {
-    case DialogueNodeType::Text:
-        handleTextNode(static_cast<TextNode*>(m_currentNode.get()));
-        break;
-    case DialogueNodeType::Choice:
-        handleChoiceNode(static_cast<ChoiceNode*>(m_currentNode.get()));
-        break;
-    case DialogueNodeType::Branch:
-        handleBranchNode(static_cast<BranchNode*>(m_currentNode.get()));
-        break;
-    case DialogueNodeType::Action:
-        handleActionNode(static_cast<ActionNode*>(m_currentNode.get()));
-        break;
-    default:
-        break;
-    }
-}
-
-void DialogueSystem::handleTextNode(TextNode* node) {
-    m_textDisplay.setText(node->text, node->displaySpeed);
-    m_textDisplay.setColor(node->textColor);
-    m_selectedChoice = -1;
-    m_currentChoices.clear();
-
-    // 设置文本显示完成回调
-    if (node->onDisplayComplete) {
-        node->onDisplayComplete();
-    }
-}
-
-void DialogueSystem::handleChoiceNode(ChoiceNode* node) {
-    // 确保文本显示完成
-    m_textDisplay.complete();
-
-    // 存储当前选项
-    m_currentChoices = node->options;
-
-    m_selectedChoice = -1;
-    // 找到第一个可用的选项
-    for (size_t i = 0; i < m_currentChoices.size(); ++i) {
-        if (m_currentChoices[i]->enabled) {
-            m_selectedChoice = static_cast<int>(i);
-            break;
-        }
-    }
-}
-
-void DialogueSystem::handleBranchNode(BranchNode* node) {
-    // 检查所有条件，找到第一个满足的条件
-    for (const auto& conditionPair : node->conditionNodes) {
-        if (m_currentNode->condition && m_currentNode->condition()) {
-            advanceToNode(conditionPair.second);
-            return;
-        }
-    }
-
-    // 如果没有条件满足，使用默认节点
-    if (!node->defaultNode.empty()) {
-        advanceToNode(node->defaultNode);
-    }
-    else {
-        endDialogue();
-    }
-}
-
-void DialogueSystem::handleActionNode(ActionNode* node) {
-    if (node->action) {
-        node->action();
-    }
-
-    if (!node->nextNode.empty()) {
-        advanceToNode(node->nextNode);
-    }
-    else {
-        endDialogue();
-    }
-}
-
 void DialogueSystem::updateSelection(const sf::Vector2f& mousePos) {
     if (!m_currentNode || m_currentNode->type != DialogueNodeType::Choice) return;
 
@@ -460,6 +454,29 @@ void DialogueSystem::executeCurrentChoice() {
             endDialogue();
         }
     }
+}
+
+bool DialogueSystem::isStringValid(const String& str) const {
+    // 检查字符串大小是否合理
+    if (str.size() > 10000) { // 设置合理的上限
+        return false;
+    }
+
+    // 检查数据指针
+    if (str.data() == nullptr) {
+        return false;
+    }
+
+    // 检查是否包含异常字符（可选）
+    for (size_t i = 0; i < str.size(); ++i) {
+        unsigned char c = static_cast<unsigned char>(str.data()[i]);
+        if (c < 32 && c != '\n' && c != '\t' && c != '\r') {
+            // 包含控制字符，可能有问题
+            return false;
+        }
+    }
+
+    return true;
 }
 
 void DialogueSystem::setOptionsPosition(const sf::Vector2f& position) {

@@ -10,12 +10,30 @@
 #include <MangoString.hpp>
 #include <MangoPtr.hpp>
 
+#include <nlohmann/json.hpp>
+
 // 对话节点类型
 enum class DialogueNodeType {
     Text,       // 纯文本
     Choice,     // 选项
     Branch,     // 分支（根据条件跳转）
     Action      // 执行动作
+};
+
+// 前向声明
+struct TextNode;
+struct ChoiceNode;
+struct BranchNode;
+struct ActionNode;
+
+// 访问者接口
+class DialogueNodeVisitor {
+public:
+    virtual ~DialogueNodeVisitor() = default;
+    virtual void visit(TextNode& node) = 0;
+    virtual void visit(ChoiceNode& node) = 0;
+    virtual void visit(BranchNode& node) = 0;
+    virtual void visit(ActionNode& node) = 0;
 };
 
 // 对话节点基类
@@ -25,6 +43,7 @@ struct DialogueNode {
     std::function<bool()> condition; // 条件（用于分支节点）
 
     virtual ~DialogueNode() = default;
+    virtual void accept(DialogueNodeVisitor& visitor) = 0;
 };
 
 // 文本节点
@@ -37,6 +56,7 @@ struct TextNode : public DialogueNode {
     String nextNode;         // 下一个节点ID
 
     TextNode() { type = DialogueNodeType::Text; }
+    void accept(DialogueNodeVisitor& visitor) override;
 };
 
 // 选项节点
@@ -53,6 +73,7 @@ struct ChoiceNode : public DialogueNode {
     std::vector<MangoPtr<Option>> options;
 
     ChoiceNode() { type = DialogueNodeType::Choice; }
+    void accept(DialogueNodeVisitor& visitor) override;
 };
 
 // 分支节点
@@ -61,6 +82,7 @@ struct BranchNode : public DialogueNode {
     String defaultNode; // 默认节点
 
     BranchNode() { type = DialogueNodeType::Branch; }
+    void accept(DialogueNodeVisitor& visitor) override;
 };
 
 // 动作节点
@@ -69,15 +91,23 @@ struct ActionNode : public DialogueNode {
     String nextNode; // 执行后的下一个节点
 
     ActionNode() { type = DialogueNodeType::Action; }
+    void accept(DialogueNodeVisitor& visitor) override;
 };
 
-class DialogueSystem : public BaseDialogue {
+class DialogueSystem : public BaseDialogue, public DialogueNodeVisitor {
 public:
     explicit DialogueSystem(const sf::Font& font, unsigned int charSize = 30);
     ~DialogueSystem() override;
 
+    // 实现访问者接口
+    void visit(TextNode& node) override;
+    void visit(ChoiceNode& node) override;
+    void visit(BranchNode& node) override;
+    void visit(ActionNode& node) override;
+
     // 核心接口
     void handleEvent(const sf::Event& event) override;
+	void handleEvent(const sf::Event& event, const sf::RenderTarget& target) override;
     void update(float deltaTime) override;
     void render(sf::RenderTarget& target) override;
 
@@ -121,16 +151,14 @@ public:
 private:
     void advanceToNode(const String& nodeId);
     void executeCurrentNode();
-    void handleTextNode(TextNode* node);
-    void handleChoiceNode(ChoiceNode* node);
-    void handleBranchNode(BranchNode* node);
-    void handleActionNode(ActionNode* node);
 
     void renderOptions(sf::RenderTarget& target);
     void updateSelection(const sf::Vector2f& mousePos);
     void selectNextChoice();
     void selectPreviousChoice();
     void executeCurrentChoice();
+
+    bool isStringValid(const String& str) const;
 
     // 数据成员
     const sf::Font& m_font;
@@ -163,4 +191,66 @@ private:
     float m_autoEndTimer = 0.f;
 
     State m_state = State::Inactive;
+};
+
+inline void TextNode::accept(DialogueNodeVisitor& visitor) { visitor.visit(*this); }
+inline void ChoiceNode::accept(DialogueNodeVisitor& visitor) { visitor.visit(*this); }
+inline void BranchNode::accept(DialogueNodeVisitor& visitor) { visitor.visit(*this); }
+inline void ActionNode::accept(DialogueNodeVisitor& visitor) { visitor.visit(*this); }
+
+
+class DialogueParser {
+public:
+    static std::unordered_map<String, MangoPtr<DialogueNode>> parseFromJSON(const std::string& jsonStr) {
+        std::unordered_map<String, MangoPtr<DialogueNode>> nodes;
+
+        try {
+            nlohmann::json jsonData = nlohmann::json::parse(jsonStr);
+
+            for (auto& item : jsonData.items()) {
+                String nodeId = item.key();
+                auto& nodeData = item.value();
+
+                // 检查节点类型
+                if (nodeData.contains("options")) {
+                    // ChoiceNode
+                    auto choiceNode = make_mango_ptr<ChoiceNode>();
+                    choiceNode->id = nodeId;
+
+                    for (auto& optionData : nodeData["options"]) {
+                        auto option = make_mango_ptr<ChoiceNode::Option>();
+                        option->text = optionData["text"].get<std::string>();
+                        option->enabled = true;
+
+                        if (optionData.contains("nextDialogueId") &&
+                            !optionData["nextDialogueId"].is_null()) {
+                            option->nextNode = optionData["nextDialogueId"].get<std::string>();
+                        }
+
+                        choiceNode->options.push_back(std::move(option));
+                    }
+
+                    nodes[nodeId] = std::move(choiceNode);
+                }
+                else if (nodeData.contains("text")) {
+                    // TextNode
+                    auto textNode = make_mango_ptr<TextNode>();
+                    textNode->id = nodeId;
+                    textNode->text = nodeData["text"].get<std::string>();
+
+                    if (nodeData.contains("characterName") &&
+                        !nodeData["characterName"].is_null()) {
+                        textNode->characterName = nodeData["characterName"].get<std::string>();
+                    }
+
+                    nodes[nodeId] = std::move(textNode);
+                }
+            }
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Failed to parse dialogue JSON: " << e.what() << std::endl;
+        }
+
+        return nodes;
+    }
 };

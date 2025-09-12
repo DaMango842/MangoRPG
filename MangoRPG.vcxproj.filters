@@ -410,6 +410,9 @@
     <ClInclude Include="MangoAPI\include\TextDisplay.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="MangoAPI\include\DialogueParser.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

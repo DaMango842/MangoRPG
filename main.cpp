@@ -1,4 +1,4 @@
-#include "Game.h"
+//#include "Game.h"
 #include "Utils.h"
 #include "ExceptionMonitor.h"
 #include "Logger.h"
@@ -29,10 +29,15 @@
 #include "DialogueSystem.h"
 #include <SFML/Graphics.hpp>
 
+#include "Window.h"
+
 int main() {
     enableANSIColor();
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Dialogue Demo");
+    auto& windowInstance = Window::getInstance();
+
+    windowInstance.create(sf::VideoMode(800, 600), "Dialogue Demo");
+
     sf::Font font;
     font.loadFromFile("Assets/Font/fusion-pixel-12px.ttf");
 
@@ -105,7 +110,7 @@ int main() {
     byeResponse->id = "bye_response";
     byeResponse->characterName = "神秘老人";
     byeResponse->text = "好吧，祝你旅途愉快。";
-    byeResponse->nextNode = ""; // 结束对话
+    byeResponse->nextNode = "exit_game"; // 结束对话
 
     MangoPtr<TextNode> moreInfo = make_mango_ptr<TextNode>();
     moreInfo->id = "more_info";
@@ -113,12 +118,20 @@ int main() {
     moreInfo->text = "这个世界充满了神秘和危险，但也充满了机遇。";
     moreInfo->nextNode = "choices"; // 返回选项
 
+    MangoPtr<ActionNode> exitAction = make_mango_ptr<ActionNode>();
+    exitAction->id = "exit_game";
+    exitAction->action = [&] {
+        std::exit(0);
+        };
+
+
     // 添加节点到对话系统
     dialogue.addNode(node1);
     dialogue.addNode(choices);
     dialogue.addNode(helpResponse);
     dialogue.addNode(byeResponse);
     dialogue.addNode(moreInfo);
+    dialogue.addNode(exitAction);
 
     // 设置起始节点
     dialogue.setStartNode("start");
@@ -127,19 +140,19 @@ int main() {
     dialogue.startDialogue();
 
     sf::Clock clock;
-    while (window.isOpen()) {
+    while (windowInstance.isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event)) {
+        while (windowInstance.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
-                window.close();
+                windowInstance.close();
             dialogue.handleEvent(event);
         }
 
         dialogue.update(clock.restart().asSeconds());
 
-        window.clear(sf::Color(50, 50, 50)); // 深灰色背景
-        dialogue.render(window);
-        window.display();
+        windowInstance.clear(sf::Color(50, 50, 50)); // 深灰色背景
+        dialogue.render(windowInstance.getWindow());
+        windowInstance.display();
     }
 
     return 0;

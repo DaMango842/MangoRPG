@@ -15,7 +15,10 @@ public:
     virtual ~BaseDialogue() = default;
 
     // 游戏循环相关
-    virtual void handleEvent(const sf::Event& event) = 0;
+    // 纯事件
+    virtual void handleEvent(const sf::Event& event) {};
+    // 用于获取坐标等一些东西的时候才会用的方法
+    virtual void handleEvent(const sf::Event& event, const sf::RenderTarget& target) {};
     virtual void update(float deltaTime) = 0;
     virtual void render(sf::RenderTarget& target) = 0;
 

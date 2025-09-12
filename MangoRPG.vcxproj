@@ -217,6 +217,7 @@
     <ClInclude Include="MangoAPI\include\Constant.hpp" />
     <ClInclude Include="MangoAPI\include\Consumable.h" />
     <ClInclude Include="MangoAPI\include\Container.h" />
+    <ClInclude Include="MangoAPI\include\DialogueParser.h" />
     <ClInclude Include="MangoAPI\include\DialogueSystem.h" />
     <ClInclude Include="MangoAPI\include\DropDown.h" />
     <ClInclude Include="MangoAPI\include\Encounter.h" />
