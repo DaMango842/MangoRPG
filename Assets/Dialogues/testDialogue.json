@@ -1,27 +1,31 @@
 {
     "testDialogue_1": {
-        "type": "text",
         "text": "你好,这是一段测试对话.",
         "characterName": "",
         "nextNode": "testDialogue_2"
     },
     "testDialogue_2": {
-        "type": "text",
         "text": "本对话无任何参考性(",
         "characterName": "",
         "nextNode": "testDialogue_2_choice"
     },
     "testDialogue_2_choice": {
-        "type": "choice",
         "options": [
             {
                 "text": "我已知晓",
-                "nextNode": null
+                "nextNode": "testDialogue_3"
             },
             {
                 "text": "我不知道",
-                "nextNode": null
+                "nextNode": "testDialogue_2_choice_after_1"
             }
         ]
+    },
+    "testDialogue_2_choice_after_1": {
+        "command": "exit"
+    },
+    "testDialogue_3": {
+        "text": "测试对话结束.",
+        "characterName": ""
     }
 }

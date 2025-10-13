@@ -31,6 +31,8 @@
 
 #include "Window.h"
 
+#include <iostream>
+
 int main() {
     enableANSIColor();
 
@@ -41,8 +43,15 @@ int main() {
     sf::Font font;
     font.loadFromFile("Assets/Font/fusion-pixel-12px.ttf");
 
+    DialogueParser parser;
+    auto nodes = parser.parseFromFile("Assets/Dialogues/testDialogue.json");
+
     // 创建对话系统
+
     DialogueSystem dialogue(font);
+    for (auto& [id, node] : nodes) {
+        dialogue.addNode(std::move(node));
+    }
 
     dialogue.setOptionsBoxStyle(
         sf::Color(0, 0, 0, 200),  // 填充颜色
@@ -53,88 +62,95 @@ int main() {
     // 设置选项间距
     dialogue.setOptionSpacing(15.f);
 
+	// 从JSON文件加载对话
+   
+
+
     // 设置角色名称
-    dialogue.setCharacterName("player", "玩家");
-    dialogue.setCharacterName("npc", "神秘老人");
+    //dialogue.setCharacterName("player", "玩家");
+    //dialogue.setCharacterName("npc", "神秘老人");
 
-    // 创建对话节点
-    // 第一个文本节点
-    MangoPtr<TextNode> node1 = make_mango_ptr<TextNode>();
-    node1->id = "start";
-    node1->characterName = "神秘老人";
-    node1->text = "你好，旅行者！你需要帮助吗？";
-    node1->displaySpeed = 0.05f;
-    node1->textColor = sf::Color::Green;
-    node1->nextNode = "choices";
+    //dialogue.setTextSpeedNormal();
 
-    // 选项节点
-    MangoPtr<ChoiceNode> choices = make_mango_ptr<ChoiceNode>();
-    choices->id = "choices";
+    //// 创建对话节点
+    //// 第一个文本节点
+    //MangoPtr<TextNode> node1 = make_mango_ptr<TextNode>();
+    //node1->id = "start";
+    //node1->characterName = "神秘老人";
+    //node1->text = "你好，旅行者！你需要帮助吗？";
+    ////node1->displaySpeed = 0.05f;
+    //node1->textColor = sf::Color::White;
+    //node1->nextNode = "choices";
 
-    // 选项1
-    MangoPtr<ChoiceNode::Option> option1 = make_mango_ptr<ChoiceNode::Option>();
-    option1->text = "是的，我需要指引";
-    option1->callback = [] { std::cout << "选择了选项1\n"; };
-    option1->normal = sf::Color::White;
-    option1->hover = sf::Color::Yellow;
-    option1->nextNode = "help_response";
+    //// 选项节点
+    //MangoPtr<ChoiceNode> choices = make_mango_ptr<ChoiceNode>();
+    //choices->id = "choices";
 
-    // 选项2
-    MangoPtr<ChoiceNode::Option> option2 = make_mango_ptr<ChoiceNode::Option>();
-    option2->text = "不，我只是路过";
-    option2->callback = [] { std::cout << "选择了选项2\n"; };
-    option2->normal = sf::Color::White;
-    option2->hover = sf::Color::Yellow;
-    option2->nextNode = "bye_response";
+    //// 选项1
+    //MangoPtr<ChoiceNode::Option> option1 = make_mango_ptr<ChoiceNode::Option>();
+    //option1->text = "是的，我需要指引";
+    //option1->callback = [] { std::cout << "选择了选项1\n"; };
+    //option1->normal = sf::Color::White;
+    //option1->hover = sf::Color::Yellow;
+    //option1->nextNode = "help_response";
 
-    // 选项3
-    MangoPtr<ChoiceNode::Option> option3 = make_mango_ptr<ChoiceNode::Option>();
-    option3->text = "你能告诉我更多信息吗？";
-    option3->callback = [] { std::cout << "选择了选项3\n"; };
-    option3->normal = sf::Color::White;
-    option3->hover = sf::Color::Yellow;
-    option3->nextNode = "more_info";
+    //// 选项2
+    //MangoPtr<ChoiceNode::Option> option2 = make_mango_ptr<ChoiceNode::Option>();
+    //option2->text = "不，我只是路过";
+    //option2->callback = [] { std::cout << "选择了选项2\n"; };
+    //option2->normal = sf::Color::White;
+    //option2->hover = sf::Color::Yellow;
+    //option2->nextNode = "bye_response";
 
-    choices->options.push_back(option1);
-    choices->options.push_back(option2);
-    choices->options.push_back(option3);
+    //// 选项3
+    //MangoPtr<ChoiceNode::Option> option3 = make_mango_ptr<ChoiceNode::Option>();
+    //option3->text = "你能告诉我更多信息吗？";
+    //option3->callback = [] { std::cout << "选择了选项3\n"; };
+    //option3->normal = sf::Color::White;
+    //option3->hover = sf::Color::Yellow;
+    //option3->nextNode = "more_info";
 
-    // 回应节点
-    MangoPtr<TextNode> helpResponse = make_mango_ptr<TextNode>();
-    helpResponse->id = "help_response";
-    helpResponse->characterName = "神秘老人";
-    helpResponse->text = "很好，我会指引你前进的道路。";
-    helpResponse->nextNode = ""; // 结束对话
+    //choices->options.push_back(option1);
+    //choices->options.push_back(option2);
+    //choices->options.push_back(option3);
 
-    MangoPtr<TextNode> byeResponse = make_mango_ptr<TextNode>();
-    byeResponse->id = "bye_response";
-    byeResponse->characterName = "神秘老人";
-    byeResponse->text = "好吧，祝你旅途愉快。";
-    byeResponse->nextNode = "exit_game"; // 结束对话
+    //// 回应节点
+    //MangoPtr<TextNode> helpResponse = make_mango_ptr<TextNode>();
+    //helpResponse->id = "help_response";
+    //helpResponse->characterName = "神秘老人";
+    //helpResponse->text = "很好，我会指引你前进的道路。";
+    //helpResponse->nextNode = ""; // 结束对话
 
-    MangoPtr<TextNode> moreInfo = make_mango_ptr<TextNode>();
-    moreInfo->id = "more_info";
-    moreInfo->characterName = "神秘老人";
-    moreInfo->text = "这个世界充满了神秘和危险，但也充满了机遇。";
-    moreInfo->nextNode = "choices"; // 返回选项
+    //MangoPtr<TextNode> byeResponse = make_mango_ptr<TextNode>();
+    //byeResponse->id = "bye_response";
+    //byeResponse->characterName = "神秘老人";
+    //byeResponse->text = "好吧，祝你旅途愉快。";
+    //byeResponse->nextNode = "exit_game"; // 结束对话
 
-    MangoPtr<ActionNode> exitAction = make_mango_ptr<ActionNode>();
-    exitAction->id = "exit_game";
-    exitAction->action = [&] {
-        std::exit(0);
-        };
+    //MangoPtr<TextNode> moreInfo = make_mango_ptr<TextNode>();
+    //moreInfo->id = "more_info";
+    //moreInfo->characterName = "神秘老人";
+    //moreInfo->text = "这个世界充满了神秘和危险，但也充满了机遇。";
+    //moreInfo->nextNode = "choices"; // 返回选项
+
+    //MangoPtr<ActionNode> exitAction = make_mango_ptr<ActionNode>();
+    //exitAction->id = "exit_game";
+    //exitAction->action = [&] {
+    //    std::exit(0);
+    //    };
 
 
-    // 添加节点到对话系统
-    dialogue.addNode(node1);
-    dialogue.addNode(choices);
-    dialogue.addNode(helpResponse);
-    dialogue.addNode(byeResponse);
-    dialogue.addNode(moreInfo);
-    dialogue.addNode(exitAction);
+    //// 添加节点到对话系统
+    //dialogue.addNode(node1);
+    //dialogue.addNode(choices);
+    //dialogue.addNode(helpResponse);
+    //dialogue.addNode(byeResponse);
+    //dialogue.addNode(moreInfo);
+    //dialogue.addNode(exitAction);
 
     // 设置起始节点
-    dialogue.setStartNode("start");
+    //dialogue.setStartNode("start");
+	dialogue.setStartNode("testDialogue_1");
 
     // 开始对话
     dialogue.startDialogue();
@@ -157,3 +173,12 @@ int main() {
 
     return 0;
 }
+
+//int main()
+//{
+//	String name{ "Mango" };
+//
+//	std::cout << "Hello, " << name << "!" << std::endl;
+//
+//	return 0;
+//}

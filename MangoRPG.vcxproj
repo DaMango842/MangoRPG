@@ -228,6 +228,7 @@
     <ClInclude Include="MangoAPI\include\ExceptionMonitor.h" />
     <ClInclude Include="MangoAPI\include\Factory.h" />
     <ClInclude Include="MangoAPI\include\GameContext.h" />
+    <ClInclude Include="MangoAPI\include\GlobalCommand.h" />
     <ClInclude Include="MangoAPI\include\Image.h" />
     <ClInclude Include="MangoAPI\include\Item.h" />
     <ClInclude Include="MangoAPI\include\KeyItem.h" />

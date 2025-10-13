@@ -5,6 +5,8 @@ TextDisplay::TextDisplay(const sf::Font& font, unsigned int charSize)
     m_text.setFont(font);
     m_text.setCharacterSize(charSize);
     m_text.setFillColor(sf::Color::White);
+	m_text.setOutlineColor(sf::Color::Black);
+	m_text.setOutlineThickness(1.f);
 }
 
 void TextDisplay::setText(const String& text, float displaySpeed) {
@@ -19,6 +21,15 @@ void TextDisplay::setText(const String& text, float displaySpeed) {
 void TextDisplay::update(float deltaTime) {
     if (m_complete) return;
 
+    // 如果是即时显示模式，直接完成
+    if (m_displaySpeed == -1) {
+        m_displayedText = m_fullText;
+        m_text.setString(m_displayedText);
+        m_complete = true;
+        return;
+    }
+
+    // 正常的速度控制显示
     m_charTimer += deltaTime;
     if (m_charTimer >= m_displaySpeed) {
         m_charTimer = 0.f;
@@ -57,6 +68,11 @@ void TextDisplay::setPosition(float x, float y) {
 
 void TextDisplay::setColor(const sf::Color& color) {
     m_text.setFillColor(color);
+}
+
+void TextDisplay::setOutlineColor(const sf::Color& color)
+{
+	m_text.setOutlineColor(color);
 }
 
 void TextDisplay::draw(sf::RenderTarget& target) {

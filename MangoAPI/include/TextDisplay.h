@@ -16,10 +16,14 @@ public:
     void setPosition(const sf::Vector2f& position);
     void setPosition(float x, float y);
     void setColor(const sf::Color& color);
+	void setOutlineColor(const sf::Color& color);
     void draw(sf::RenderTarget& target);
 
     unsigned int getCharacterSize() const { return m_text.getCharacterSize(); }
     sf::FloatRect getLocalBounds() const { return m_text.getLocalBounds(); }
+
+	float getDisplaySpeed() const { return m_displaySpeed; }
+	void setDisplaySpeed(float speed) { m_displaySpeed = std::max(1.f, speed); }
 
 private:
     sf::Text m_text;
