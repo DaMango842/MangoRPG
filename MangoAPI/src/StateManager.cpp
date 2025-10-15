@@ -1,4 +1,5 @@
 #include "StateManager.h"
+#include "Logger.h"
 
 void StateManager::pushState(std::unique_ptr<BaseState> state) {
     if (state) {

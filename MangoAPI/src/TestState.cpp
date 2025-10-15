@@ -10,8 +10,7 @@
 TestState::TestState(SafeRef<StateManager> stateManager, MangoPtr<Player> player)
     : m_stateManager(stateManager),
     m_camera({ 800.f, 640.f }),
-    m_player(std::move(player)),
-	m_dialogSys(ResourceLoader::getFont("Assets/Font/fusion-pixel-12px.ttf"))
+    m_player(std::move(player))
 {
 
 }

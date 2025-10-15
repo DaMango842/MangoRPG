@@ -15,7 +15,7 @@
 
 #include "Logger.h"
 
-#include "DialogueSystem.h"
+//#include "DialogueSystem.h"
 
 #include <MangoPtr.hpp>
 
@@ -44,6 +44,4 @@ private:
     Encounter m_encounter;
 
     Container m_container;
-
-    DialogueSystem m_dialogSys;
 };

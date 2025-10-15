@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Utils.h"
+#include "Logger.h"
 
 //class StateManager;
 

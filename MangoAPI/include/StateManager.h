@@ -8,8 +8,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "BaseState.h"
-#include "Logger.h"
 #include "Utils.h"
+
 
 class StateManager 
 {

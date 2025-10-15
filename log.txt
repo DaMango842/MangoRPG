@@ -9315,3 +9315,108 @@
 [2025-08-19 18:07:06.854] [DEBUG] [Logger.h:130 - *)] 日志已启动
 [2025-08-19 18:48:56.676] [DEBUG] [Logger.h:130 - *)] 日志已启动
 [2025-08-19 20:06:09.616] [DEBUG] [Logger.h:130 - *)] 日志已启动
+[2025-10-13 22:35:03.694] [DEBUG] [Logger.h:130 - *)] 日志已启动
+[2025-10-13 22:35:07.559] [DEBUG] [Logger.h:130 - *&&)] [Construct] class MainMenuState
+[2025-10-13 22:35:07.561] [INFO] [Logger.h:108 - &)] Push state: class MainMenuState
+[2025-10-13 22:35:11.183] [DEBUG] [Logger.h:130 - *&&)] [Construct] class Player
+[2025-10-13 22:35:11.186] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-13 22:37:21.222] [DEBUG] [Logger.h:130 - *)] 日志已启动
+[2025-10-13 22:37:27.130] [DEBUG] [Logger.h:130 - *&&)] [Construct] class MainMenuState
+[2025-10-13 22:37:27.151] [INFO] [Logger.h:108 - &)] Push state: class MainMenuState
+[2025-10-13 22:37:31.860] [DEBUG] [Logger.h:130 - *&&)] [Construct] class Player
+[2025-10-13 22:37:31.864] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-13 22:37:31.866] [INFO] [Logger.h:108 - &)] Push state: class TestState
+[2025-10-13 22:37:32.159] [INFO] [Logger.h:130 - *)] Camera target set.
+[2025-10-13 22:37:32.161] [INFO] [Logger.h:130 - &)] Camera bounds set: 800x640
+[2025-10-14 17:33:56.927] [DEBUG] [Logger.h:130 - *)] 日志已启动
+[2025-10-14 17:34:00.599] [DEBUG] [Logger.h:130 - *&&)] [Construct] class MainMenuState
+[2025-10-14 17:34:00.600] [INFO] [Logger.h:108 - &)] Push state: class MainMenuState
+[2025-10-14 17:34:05.319] [DEBUG] [Logger.h:130 - *&&)] [Construct] class Player
+[2025-10-14 17:34:05.325] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-14 17:34:05.327] [INFO] [Logger.h:108 - &)] Push state: class TestState
+[2025-10-14 17:34:05.735] [INFO] [Logger.h:130 - *)] Camera target set.
+[2025-10-14 17:34:05.738] [INFO] [Logger.h:130 - &)] Camera bounds set: 800x640
+[2025-10-14 17:34:08.808] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-14 17:34:08.809] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-14 17:34:08.810] [DEBUG] [Logger.h:130 - *&&)] [Construct] class BattleState
+[2025-10-14 17:34:08.811] [INFO] [Logger.h:108 - &)] Push state: class BattleState
+[2025-10-14 17:34:09.024] [INFO] [Logger.h:108 - &)] Loaded 10 enemy prototype(s) from Assets/Data/enemies.json
+[2025-10-14 17:34:11.674] [DEBUG] [Logger.h:108 - &)] Test Enemy 5 受到了 19 点伤害!（当前HP: 50 → 31）
+[2025-10-14 17:34:11.675] [DEBUG] [Logger.h:108 - &)] Player 攻击了 Test Enemy 5!
+[2025-10-14 17:34:11.689] [DEBUG] [Logger.h:108 - &)] Player 受到了 17 点伤害!（当前HP: 100 → 83）
+[2025-10-14 17:34:13.157] [DEBUG] [Logger.h:108 - &)] Test Enemy 5 受到了 21 点伤害!（当前HP: 31 → 10）
+[2025-10-14 17:34:13.158] [DEBUG] [Logger.h:108 - &)] Player 攻击了 Test Enemy 5!
+[2025-10-14 17:34:13.173] [DEBUG] [Logger.h:108 - &)] Player 受到了 10 点伤害!（当前HP: 83 → 73）
+[2025-10-14 17:34:14.104] [DEBUG] [Logger.h:108 - &)] Test Enemy 5 受到了 11 点伤害!（当前HP: 10 → 0）
+[2025-10-14 17:34:14.105] [DEBUG] [Logger.h:108 - &)] Player 攻击了 Test Enemy 5!
+[2025-10-14 17:34:14.120] [INFO] [Logger.h:130 - *)] 战斗胜利！
+[2025-10-14 17:34:14.122] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-14 17:34:14.123] [INFO] [Logger.h:108 - &)] Pop state: class BattleState
+[2025-10-14 17:34:14.125] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class BattleState
+[2025-10-14 17:34:17.757] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class Player
+[2025-10-15 02:02:31.970] [DEBUG] [Logger.h:130 - *)] 日志已启动
+[2025-10-15 02:02:34.172] [DEBUG] [Logger.h:130 - *&&)] [Construct] class MainMenuState
+[2025-10-15 02:02:34.173] [INFO] [Logger.h:108 - &)] Push state: class MainMenuState
+[2025-10-15 02:02:39.869] [DEBUG] [Logger.h:130 - *&&)] [Construct] class Player
+[2025-10-15 02:02:39.871] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-15 02:02:39.872] [INFO] [Logger.h:108 - &)] Push state: class TestState
+[2025-10-15 02:02:40.098] [INFO] [Logger.h:130 - *)] Camera target set.
+[2025-10-15 02:02:40.099] [INFO] [Logger.h:130 - &)] Camera bounds set: 800x640
+[2025-10-15 02:02:43.813] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-15 02:02:43.814] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-15 02:02:43.816] [DEBUG] [Logger.h:130 - *&&)] [Construct] class BattleState
+[2025-10-15 02:02:43.817] [INFO] [Logger.h:108 - &)] Push state: class BattleState
+[2025-10-15 02:02:43.990] [INFO] [Logger.h:108 - &)] Loaded 10 enemy prototype(s) from Assets/Data/enemies.json
+[2025-10-15 02:02:45.693] [DEBUG] [Logger.h:108 - &)] Test Enemy 9 受到了 7 点伤害!（当前HP: 50 → 43）
+[2025-10-15 02:02:45.694] [DEBUG] [Logger.h:108 - &)] Player 攻击了 Test Enemy 9!
+[2025-10-15 02:02:45.712] [DEBUG] [Logger.h:108 - &)] Player 受到了 18 点伤害!（当前HP: 100 → 82）
+[2025-10-15 02:02:46.853] [DEBUG] [Logger.h:108 - &)] Test Enemy 9 受到了 12 点伤害!（当前HP: 43 → 31）
+[2025-10-15 02:02:46.854] [DEBUG] [Logger.h:108 - &)] Player 攻击了 Test Enemy 9!
+[2025-10-15 02:02:46.868] [DEBUG] [Logger.h:108 - &)] Player 受到了 19 点伤害!（当前HP: 82 → 63）
+[2025-10-15 02:02:47.767] [DEBUG] [Logger.h:108 - &)] Test Enemy 9 受到了 23 点伤害!（当前HP: 31 → 8）
+[2025-10-15 02:02:47.768] [DEBUG] [Logger.h:108 - &)] Player 攻击了 Test Enemy 9!
+[2025-10-15 02:02:47.782] [DEBUG] [Logger.h:108 - &)] Player 受到了 20 点伤害!（当前HP: 63 → 43）
+[2025-10-15 02:02:48.780] [DEBUG] [Logger.h:108 - &)] Test Enemy 9 受到了 17 点伤害!（当前HP: 8 → 0）
+[2025-10-15 02:02:48.781] [DEBUG] [Logger.h:108 - &)] Player 攻击了 Test Enemy 9!
+[2025-10-15 02:02:48.812] [INFO] [Logger.h:130 - *)] 战斗胜利！
+[2025-10-15 02:02:48.813] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-15 02:02:48.814] [INFO] [Logger.h:108 - &)] Pop state: class BattleState
+[2025-10-15 02:02:48.814] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class BattleState
+[2025-10-15 02:02:58.243] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class Player
+[2025-10-15 02:19:09.813] [DEBUG] [Logger.h:130 - *)] 日志已启动
+[2025-10-15 02:19:15.933] [DEBUG] [Logger.h:130 - *&&)] [Construct] class MainMenuState
+[2025-10-15 02:19:15.935] [INFO] [Logger.h:108 - &)] Push state: class MainMenuState
+[2025-10-15 02:19:21.948] [DEBUG] [Logger.h:130 - *&&)] [Construct] class Player
+[2025-10-15 02:19:21.952] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-15 02:19:21.955] [INFO] [Logger.h:108 - &)] Push state: class TestState
+[2025-10-15 02:19:22.106] [INFO] [Logger.h:130 - *)] Camera target set.
+[2025-10-15 02:19:22.108] [INFO] [Logger.h:130 - &)] Camera bounds set: 800x640
+[2025-10-15 02:19:32.156] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class Player
+[2025-10-15 02:19:32.160] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class MainMenuState
+[2025-10-15 02:27:34.822] [DEBUG] [Logger.h:130 - *)] 日志已启动
+[2025-10-15 02:27:37.770] [DEBUG] [Logger.h:130 - *&&)] [Construct] class MainMenuState
+[2025-10-15 02:27:37.771] [INFO] [Logger.h:108 - &)] Push state: class MainMenuState
+[2025-10-15 02:27:41.175] [DEBUG] [Logger.h:130 - *&&)] [Construct] class Player
+[2025-10-15 02:27:41.176] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-15 02:27:41.177] [INFO] [Logger.h:108 - &)] Push state: class TestState
+[2025-10-15 02:27:41.215] [INFO] [Logger.h:130 - *)] Camera target set.
+[2025-10-15 02:27:41.216] [INFO] [Logger.h:130 - &)] Camera bounds set: 800x640
+[2025-10-15 02:27:44.077] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-15 02:27:44.078] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-15 02:27:44.079] [DEBUG] [Logger.h:130 - *&&)] [Construct] class BattleState
+[2025-10-15 02:27:44.080] [INFO] [Logger.h:108 - &)] Push state: class BattleState
+[2025-10-15 02:27:44.261] [INFO] [Logger.h:108 - &)] Loaded 10 enemy prototype(s) from Assets/Data/enemies.json
+[2025-10-15 02:27:46.002] [DEBUG] [Logger.h:108 - &)] Test Enemy 10 受到了 24 点伤害!（当前HP: 50 → 26）
+[2025-10-15 02:27:46.003] [DEBUG] [Logger.h:108 - &)] Player 攻击了 Test Enemy 10!
+[2025-10-15 02:27:46.034] [DEBUG] [Logger.h:108 - &)] Player 受到了 1 点伤害!（当前HP: 100 → 99）
+[2025-10-15 02:27:47.080] [DEBUG] [Logger.h:108 - &)] Test Enemy 10 受到了 10 点伤害!（当前HP: 26 → 16）
+[2025-10-15 02:27:47.082] [DEBUG] [Logger.h:108 - &)] Player 攻击了 Test Enemy 10!
+[2025-10-15 02:27:47.095] [DEBUG] [Logger.h:108 - &)] Player 受到了 10 点伤害!（当前HP: 99 → 89）
+[2025-10-15 02:27:47.746] [DEBUG] [Logger.h:108 - &)] Test Enemy 10 受到了 17 点伤害!（当前HP: 16 → 0）
+[2025-10-15 02:27:47.748] [DEBUG] [Logger.h:108 - &)] Player 攻击了 Test Enemy 10!
+[2025-10-15 02:27:47.763] [INFO] [Logger.h:130 - *)] 战斗胜利！
+[2025-10-15 02:27:47.765] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-15 02:27:47.766] [INFO] [Logger.h:108 - &)] Pop state: class BattleState
+[2025-10-15 02:27:47.768] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class BattleState
+[2025-10-15 02:28:00.727] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class Player
+[2025-10-15 02:28:00.729] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class MainMenuState

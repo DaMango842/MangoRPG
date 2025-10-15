@@ -17,6 +17,8 @@
 #include <vector>
 #include <unordered_map>
 
+#include "Logger.h"
+
 struct Settings {
     int windowModeIndex = 0;
     int resolutionIndex = 0;
