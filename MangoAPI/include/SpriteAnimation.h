@@ -33,7 +33,7 @@ private:
     sf::Texture m_texture;
     std::unordered_map<std::string, std::vector<sf::IntRect>> m_frames;
 
-    int m_currentIndex = 0;
+    size_t m_currentIndex = 0;
     float m_animSpeed = 0.f;
 
     std::string m_animName;

@@ -75,6 +75,14 @@ void GameMenuState::addButton(const sf::String& text, float y, std::function<voi
 
 void GameMenuState::handleEvent(const sf::Event& event)
 {
+    if (event.type == sf::Event::KeyPressed) 
+    {
+        if (event.key.code == sf::Keyboard::Escape) // <- 追加可从游戏菜单中回到游戏中
+        {
+            m_stateManager->safePopState();
+        }
+	}
+
     for (auto& comp : m_components)
         comp->handleEvent(event);
 }

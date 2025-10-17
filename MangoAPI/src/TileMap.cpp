@@ -60,15 +60,15 @@ bool TileMap::loadFromJSON(const std::string& jsonPath, const std::string& tiles
 
                 sf::Vertex* quad = &vertices[tileIndex * 4];
 
-                quad[0].position = sf::Vector2f(x * m_tileWidth, y * m_tileHeight);
-                quad[1].position = sf::Vector2f((x + 1) * m_tileWidth, y * m_tileHeight);
-                quad[2].position = sf::Vector2f((x + 1) * m_tileWidth, (y + 1) * m_tileHeight);
-                quad[3].position = sf::Vector2f(x * m_tileWidth, (y + 1) * m_tileHeight);
+                quad[0].position = sf::Vector2f(static_cast<float>(x * m_tileWidth), static_cast<float>(y * m_tileHeight));
+                quad[1].position = sf::Vector2f(static_cast<float>((x + 1) * m_tileWidth), static_cast<float>(y * m_tileHeight));
+                quad[2].position = sf::Vector2f(static_cast<float>((x + 1) * m_tileWidth), static_cast<float>((y + 1) * m_tileHeight));
+                quad[3].position = sf::Vector2f(static_cast<float>(x * m_tileWidth), static_cast<float>((y + 1) * m_tileHeight));
 
-                quad[0].texCoords = sf::Vector2f(tu * m_tileWidth, tv * m_tileHeight);
-                quad[1].texCoords = sf::Vector2f((tu + 1) * m_tileWidth, tv * m_tileHeight);
-                quad[2].texCoords = sf::Vector2f((tu + 1) * m_tileWidth, (tv + 1) * m_tileHeight);
-                quad[3].texCoords = sf::Vector2f(tu * m_tileWidth, (tv + 1) * m_tileHeight);
+                quad[0].texCoords = sf::Vector2f(static_cast<float>(tu * m_tileWidth), static_cast<float>(tv * m_tileHeight));
+                quad[1].texCoords = sf::Vector2f(static_cast<float>((tu + 1) * m_tileWidth), static_cast<float>(tv * m_tileHeight));
+                quad[2].texCoords = sf::Vector2f(static_cast<float>((tu + 1) * m_tileWidth), static_cast<float>((tv + 1) * m_tileHeight));
+                quad[3].texCoords = sf::Vector2f(static_cast<float>(tu * m_tileWidth), static_cast<float>((tv + 1) * m_tileHeight));
             }
         }
 

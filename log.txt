@@ -9420,3 +9420,415 @@
 [2025-10-15 02:27:47.768] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class BattleState
 [2025-10-15 02:28:00.727] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class Player
 [2025-10-15 02:28:00.729] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class MainMenuState
+[2025-10-16 20:54:17.498] [DEBUG] [Logger.h:130 - *)] 日志已启动
+[2025-10-16 20:54:23.402] [DEBUG] [Logger.h:130 - *&&)] [Construct] class MainMenuState
+[2025-10-16 20:54:23.403] [INFO] [Logger.h:108 - &)] Push state: class MainMenuState
+[2025-10-16 20:54:28.502] [DEBUG] [Logger.h:130 - *&&)] [Construct] class Player
+[2025-10-16 20:54:28.505] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:54:28.507] [INFO] [Logger.h:108 - &)] Push state: class TestState
+[2025-10-16 20:54:28.659] [INFO] [Logger.h:130 - *)] Camera target set.
+[2025-10-16 20:54:28.660] [INFO] [Logger.h:130 - &)] Camera bounds set: 800x640
+[2025-10-16 20:54:30.277] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:54:30.278] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:54:30.279] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:54:30.279] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:54:32.014] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:54:32.015] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:54:32.017] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:54:32.018] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:54:32.470] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:54:32.472] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:54:32.473] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:54:32.476] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:54:32.960] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:54:32.961] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:54:32.962] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:54:32.963] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:54:33.308] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:54:33.309] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:54:33.310] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:54:33.311] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:54:34.118] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:54:34.119] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:54:34.120] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:54:34.121] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:54:34.511] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:54:34.512] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:54:34.513] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:54:34.514] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:54:35.013] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:54:35.015] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:54:35.017] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:54:35.019] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:54:37.012] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class Player
+[2025-10-16 20:54:37.016] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class MainMenuState
+[2025-10-16 20:56:27.729] [DEBUG] [Logger.h:130 - *)] 日志已启动
+[2025-10-16 20:56:34.704] [DEBUG] [Logger.h:130 - *&&)] [Construct] class MainMenuState
+[2025-10-16 20:56:34.705] [INFO] [Logger.h:108 - &)] Push state: class MainMenuState
+[2025-10-16 20:56:50.932] [DEBUG] [Logger.h:130 - *&&)] [Construct] class Player
+[2025-10-16 20:56:50.934] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:50.936] [INFO] [Logger.h:108 - &)] Push state: class TestState
+[2025-10-16 20:56:50.991] [INFO] [Logger.h:130 - *)] Camera target set.
+[2025-10-16 20:56:50.992] [INFO] [Logger.h:130 - &)] Camera bounds set: 800x640
+[2025-10-16 20:56:51.588] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:51.588] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:51.589] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:51.590] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:52.060] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:52.062] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:52.066] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:52.068] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:52.468] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:52.470] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:52.471] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:52.472] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:52.937] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:52.938] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:52.939] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:52.940] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:53.350] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:53.351] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:53.352] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:53.353] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:53.628] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:53.630] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:53.634] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:53.638] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:53.806] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:53.809] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:53.811] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:53.814] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:54.016] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:54.017] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:54.020] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:54.021] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:54.218] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:54.221] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:54.224] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:54.227] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:54.475] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:54.478] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:54.483] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:54.486] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:54.621] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:54.623] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:54.625] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:54.627] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:54.778] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:54.779] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:54.780] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:54.781] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:54.926] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:54.927] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:54.928] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:54.928] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:55.124] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:55.126] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:55.129] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:55.131] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:55.331] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:55.333] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:55.334] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:55.336] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:55.537] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:55.538] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:55.539] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:55.540] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:55.743] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:55.745] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:55.748] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:55.750] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:56.213] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:56.214] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:56.216] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:56.217] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:56.514] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:56.515] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:56.516] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:56.517] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:56.809] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:56.810] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:56.811] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:56.812] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:57.013] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:57.015] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:57.017] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:57.018] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:57.241] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:57.242] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:57.243] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:57.244] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:57.497] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:57.498] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:57.498] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:57.499] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:57.691] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:57.691] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:57.693] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:57.693] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:57.909] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:57.911] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:57.913] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:57.914] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:58.158] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:58.159] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:58.160] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:58.161] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:58.342] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:58.343] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:58.344] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:58.345] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:58.545] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:58.546] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:58.547] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:58.549] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:58.752] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:58.753] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:58.755] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:58.756] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:58.985] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:58.986] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:58.988] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:58.989] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:56:59.264] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:56:59.265] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:56:59.266] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:56:59.267] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:56:59.853] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:56:59.854] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:56:59.855] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:56:59.856] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:00.344] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:00.347] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:00.350] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:00.352] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:00.547] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:00.549] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:00.552] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:00.554] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:00.838] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:00.840] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:00.842] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:00.843] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:01.156] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:01.157] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:01.158] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:01.159] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:01.417] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:01.417] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:01.418] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:01.419] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:01.719] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:01.721] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:01.722] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:01.723] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:02.036] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:02.037] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:02.038] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:02.039] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:02.419] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:02.421] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:02.423] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:02.424] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:02.723] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:02.728] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:02.729] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:02.730] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:03.080] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:03.081] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:03.082] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:03.083] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:03.396] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:03.398] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:03.401] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:03.403] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:03.717] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:03.719] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:03.721] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:03.722] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:04.028] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:04.029] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:04.030] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:04.031] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:04.379] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:04.379] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:04.381] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:04.381] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:04.704] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:04.706] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:04.708] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:04.711] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:05.031] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:05.032] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:05.033] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:05.034] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:05.418] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:05.418] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:05.419] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:05.420] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:05.763] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:05.764] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:05.765] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:05.766] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:06.112] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:06.114] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:06.115] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:06.116] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:06.458] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:06.459] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:06.460] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:06.462] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:06.825] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:06.896] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:06.897] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:06.898] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:07.063] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:07.064] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:07.065] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:07.067] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:07.423] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:07.424] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:07.424] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:07.425] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:07.773] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:07.774] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:07.775] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:07.776] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:08.116] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:08.119] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:08.122] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:08.125] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:08.477] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:08.479] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:08.481] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:08.482] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:08.837] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:08.837] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:08.838] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:08.839] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:09.245] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:09.247] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:09.249] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:09.250] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:09.639] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:09.641] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:09.644] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:09.646] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:09.937] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:09.938] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:09.940] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:09.941] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:10.284] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:10.287] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:10.291] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:10.295] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:10.511] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:10.513] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:10.516] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:10.518] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:10.898] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:10.901] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:10.904] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:10.906] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:11.321] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:11.322] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:11.324] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:11.326] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:11.618] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:11.619] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:11.620] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:11.621] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:11.948] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:11.949] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:11.950] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:11.951] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:12.200] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:12.200] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:12.201] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:12.202] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:12.487] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:12.489] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:12.491] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:12.492] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:12.740] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:12.744] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:12.747] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:12.750] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:12.821] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:12.822] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:12.823] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:12.825] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:12.854] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:12.856] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:12.857] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:12.859] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:13.014] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:13.015] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:13.017] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:13.018] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:13.084] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:13.098] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:13.111] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:13.117] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:13.315] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:13.318] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:13.323] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:13.326] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:13.392] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:13.394] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:13.396] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:13.398] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:13.447] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:13.449] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:13.451] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:13.452] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:13.570] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:13.572] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:13.574] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:13.575] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:13.646] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:13.648] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:13.650] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:13.652] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:13.805] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:13.807] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:13.810] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:13.813] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:13.882] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:13.883] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:13.885] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:13.886] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:14.037] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:14.043] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:14.050] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:14.055] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:14.171] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:14.183] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:14.208] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:14.221] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:14.358] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:14.360] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:14.361] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:14.363] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:14.416] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:14.418] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:14.420] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:14.421] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:14.566] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:14.569] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:14.572] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:14.576] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:14.637] [INFO] [Logger.h:130 - *)] Applying: Pop
+[2025-10-16 20:57:14.640] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:14.641] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:14.642] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:16.599] [INFO] [Logger.h:130 - &)] Camera size and center set to: 800, 640
+[2025-10-16 20:57:16.602] [DEBUG] [Logger.h:130 - &)] Reset camera with window size: 800 x 640
+[2025-10-16 20:57:16.607] [DEBUG] [Logger.h:130 - *&&)] [Construct] class GameMenuState
+[2025-10-16 20:57:16.611] [INFO] [Logger.h:108 - &)] Push state: class GameMenuState
+[2025-10-16 20:57:17.541] [DEBUG] [Logger.h:130 - *&&)] [Construct] class MainMenuState
+[2025-10-16 20:57:17.543] [INFO] [Logger.h:130 - *)] Applying: Change
+[2025-10-16 20:57:17.545] [INFO] [Logger.h:108 - &)] Pop state: class GameMenuState
+[2025-10-16 20:57:17.547] [INFO] [Logger.h:130 - *)] GameMenuState exited and buttons cleared.
+[2025-10-16 20:57:17.549] [DEBUG] [Logger.h:130 - *&&)] [Destruct] class GameMenuState
+[2025-10-16 20:57:17.552] [INFO] [Logger.h:108 - &)] Push state: class MainMenuState

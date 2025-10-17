@@ -30,7 +30,7 @@ InputBox::InputBox(const sf::Font& font, const sf::Vector2f& position, const sf:
 void InputBox::handleEvent(const sf::Event& event) {
     if (event.type == sf::Event::MouseButtonPressed) {
         auto bounds = m_box.getGlobalBounds();
-        m_isActive = bounds.contains(event.mouseButton.x, event.mouseButton.y);
+        m_isActive = bounds.contains(static_cast<float>(event.mouseButton.x), (static_cast<float>(event.mouseButton.y)));
         m_box.setOutlineColor(m_isActive ? sf::Color::Yellow : sf::Color::White);
     }
 

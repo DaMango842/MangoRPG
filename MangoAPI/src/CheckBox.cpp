@@ -34,7 +34,7 @@ void CheckBox::handleEvent(const sf::Event& event) {
 
     if (event.type == sf::Event::MouseButtonPressed &&
         event.mouseButton.button == sf::Mouse::Left) {
-        auto mousePos = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
+        auto mousePos = sf::Vector2f(static_cast<float>(event.mouseButton.x), (static_cast<float>(event.mouseButton.y)));
         if (m_box.getGlobalBounds().contains(mousePos)) {
             m_checked = !m_checked;
             if (m_callback)

@@ -36,6 +36,13 @@ void TestState::handleEvent(const sf::Event& event)
 {
     if (event.type == sf::Event::KeyPressed)
     {
+        if (event.key.code == sf::Keyboard::Escape)
+        {
+            m_camera.resetCamera(DEFAULT_SIZE);
+            m_stateManager->pushState(
+                std::make_unique<GameMenuState>(m_stateManager, m_player)
+            );
+        }
         if (event.key.code == sf::Keyboard::F2)
         {
             m_camera.resetCamera(DEFAULT_SIZE);
